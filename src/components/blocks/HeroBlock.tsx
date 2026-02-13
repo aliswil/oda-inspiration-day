@@ -35,23 +35,14 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
       {block.backgroundVideo && (
         <div className="absolute inset-0">
           {ytId ? (
-            <>
-              {/* Blurred thumbnail fills entire background — no black space */}
-              <img
-                src={`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`}
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover blur-xl scale-110"
-              />
-              {/* Actual video centered on top */}
-              <iframe
-                src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&playlist=${ytId}`}
-                allow="autoplay"
-                className="absolute inset-0 w-full h-full pointer-events-none scale-125"
-                style={{ border: 0 }}
-                tabIndex={-1}
-                aria-hidden="true"
-              />
-            </>
+            <iframe
+              src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&playlist=${ytId}`}
+              allow="autoplay"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+              style={{ border: 0, width: '100vw', height: '100vh', minWidth: '177.78vh', minHeight: '56.25vw' }}
+              tabIndex={-1}
+              aria-hidden="true"
+            />
           ) : (
             <video autoPlay muted loop playsInline className="w-full h-full object-cover">
               <source src={block.backgroundVideo} type="video/mp4" />
