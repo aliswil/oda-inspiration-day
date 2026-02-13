@@ -13,6 +13,7 @@ export const BRAND_COLORS = {
 
 export const NAV_ITEMS = [
   { label: 'Theme', href: '/theme' },
+  { label: 'Why Attend', href: '/why-attend' },
   { label: 'Program', href: '/program' },
   { label: 'Speakers', href: '/speakers' },
   { label: 'Tickets', href: '/tickets' },

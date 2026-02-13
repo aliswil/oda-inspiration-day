@@ -19,7 +19,7 @@ export function Footer() {
               alt="ODA Inspiration Day"
               width={160}
               height={40}
-              className="h-10 w-auto mb-6 brightness-0 invert"
+              className="h-32 w-auto mb-6 brightness-0 invert"
             />
             <p className="text-white/60 text-sm leading-relaxed">
               ODA Inspiration Day is the largest diversity in tech conference in the Nordics, bringing together 11,000+ members of the tech community.

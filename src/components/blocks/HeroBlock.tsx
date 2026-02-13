@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { SanityImage } from '@/components/ui/SanityImage'
 import { BlobDecoration } from '@/components/ui/BlobDecoration'
+import { HeroLogoAnimation } from '@/components/ui/HeroLogoAnimation'
 import type { HeroBlock as HeroBlockType } from '@/sanity/types'
 
 const heightMap = {
@@ -61,52 +62,82 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
         </>
       )}
 
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        {block.heading && (
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-none mb-6 tracking-tight"
-          >
-            {block.heading}
-          </motion.h1>
-        )}
-
-        {block.subheading && (
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl lg:text-2xl text-white/80 max-w-3xl mx-auto mb-10"
-          >
-            {block.subheading}
-          </motion.p>
-        )}
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-wrap gap-4 justify-center"
-        >
-          {block.cta && (
-            <Button href={block.cta.href} isExternal={block.cta.isExternal} size="lg">
-              {block.cta.label}
-            </Button>
-          )}
-          {block.secondaryCta && (
-            <Button
-              href={block.secondaryCta.href}
-              isExternal={block.secondaryCta.isExternal}
-              variant="outline"
-              size="lg"
-              className="border-white text-white hover:bg-white hover:text-dark-blue"
+      <div className="relative z-10 text-center px-4 max-w-7xl mx-auto w-full">
+        {block.style === 'fullscreen' && block.backgroundVideo ? (
+          <>
+            <h1 className="sr-only">ODA Inspiration Day</h1>
+            <HeroLogoAnimation />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="flex flex-wrap gap-4 justify-center mt-32"
             >
-              {block.secondaryCta.label}
-            </Button>
-          )}
-        </motion.div>
+              {block.cta && (
+                <Button href={block.cta.href} isExternal={block.cta.isExternal} size="lg">
+                  {block.cta.label}
+                </Button>
+              )}
+              {block.secondaryCta && (
+                <Button
+                  href={block.secondaryCta.href}
+                  isExternal={block.secondaryCta.isExternal}
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white hover:bg-white hover:text-dark-blue"
+                >
+                  {block.secondaryCta.label}
+                </Button>
+              )}
+            </motion.div>
+          </>
+        ) : (
+          <>
+            {block.heading && (
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-none mb-6 tracking-tight"
+              >
+                {block.heading}
+              </motion.h1>
+            )}
+            {block.subheading && (
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-lg md:text-xl lg:text-2xl text-white/80 max-w-3xl mx-auto mb-10"
+              >
+                {block.subheading}
+              </motion.p>
+            )}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-wrap gap-4 justify-center"
+            >
+              {block.cta && (
+                <Button href={block.cta.href} isExternal={block.cta.isExternal} size="lg">
+                  {block.cta.label}
+                </Button>
+              )}
+              {block.secondaryCta && (
+                <Button
+                  href={block.secondaryCta.href}
+                  isExternal={block.secondaryCta.isExternal}
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white hover:bg-white hover:text-dark-blue"
+                >
+                  {block.secondaryCta.label}
+                </Button>
+              )}
+            </motion.div>
+          </>
+        )}
       </div>
 
       <motion.div
@@ -114,6 +145,7 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        aria-hidden="true"
       >
         <div className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-2">
           <motion.div

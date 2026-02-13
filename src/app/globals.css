@@ -66,3 +66,101 @@ body {
   background-color: #D9CEF5;
   color: #16122D;
 }
+
+/* ─── Glitch text effect for Digital Paradox ─── */
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.glitch-text::before {
+  color: #EF3255;
+  animation: glitch-shift-1 3s infinite linear alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  z-index: -1;
+}
+
+.glitch-text::after {
+  color: #D9CEF5;
+  animation: glitch-shift-2 2.5s infinite linear alternate-reverse;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  z-index: -1;
+}
+
+@keyframes glitch-shift-1 {
+  0%, 80% { transform: translate(0); }
+  82% { transform: translate(-4px, 2px); }
+  84% { transform: translate(4px, -1px); }
+  86% { transform: translate(-2px, 3px); }
+  88%, 100% { transform: translate(0); }
+}
+
+@keyframes glitch-shift-2 {
+  0%, 75% { transform: translate(0); }
+  77% { transform: translate(3px, -2px); }
+  79% { transform: translate(-5px, 1px); }
+  81% { transform: translate(2px, -3px); }
+  83%, 100% { transform: translate(0); }
+}
+
+/* ─── Marquee rollercoaster rows ─── */
+.marquee-left {
+  animation: marquee-scroll-left var(--duration, 30s) linear infinite;
+}
+
+.marquee-right {
+  animation: marquee-scroll-right var(--duration, 30s) linear infinite;
+}
+
+@keyframes marquee-scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ─── Theme background slow pan ─── */
+.theme-bg-animate {
+  animation: theme-bg-pan 30s ease-in-out infinite alternate;
+}
+
+@keyframes theme-bg-pan {
+  0% { transform: scale(1.1) translate(0, 0); }
+  50% { transform: scale(1.15) translate(-1%, 1%); }
+  100% { transform: scale(1.1) translate(1%, -1%); }
+}
+
+/* ─── Film grain noise overlay ─── */
+.noise-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .glitch-text::before,
+  .glitch-text::after {
+    animation: none;
+  }
+  .theme-bg-animate {
+    animation: none;
+  }
+  .marquee-left,
+  .marquee-right {
+    animation: none;
+  }
+}
