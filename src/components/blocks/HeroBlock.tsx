@@ -13,8 +13,15 @@ const heightMap = {
   medium: 'min-h-[60vh]',
 }
 
+function getYouTubeId(url: string): string | null {
+  if (url.includes('youtu.be/')) return url.split('youtu.be/')[1]?.split('?')[0] || null
+  if (url.includes('youtube.com/watch')) return new URL(url).searchParams.get('v')
+  return null
+}
+
 export function HeroBlock({ block }: { block: HeroBlockType }) {
   const height = heightMap[block.style || 'fullscreen']
+  const ytId = block.backgroundVideo ? getYouTubeId(block.backgroundVideo) : null
 
   return (
     <section className={cn('relative flex items-center justify-center overflow-hidden -mt-16 md:-mt-20', height)}>
@@ -27,15 +34,24 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
 
       {block.backgroundVideo && (
         <div className="absolute inset-0">
-          {block.backgroundVideo.includes('youtube.com') || block.backgroundVideo.includes('youtu.be') ? (
-            <iframe
-              src={`https://www.youtube.com/embed/${block.backgroundVideo.includes('youtu.be/') ? block.backgroundVideo.split('youtu.be/')[1]?.split('?')[0] : new URL(block.backgroundVideo).searchParams.get('v')}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&playlist=${block.backgroundVideo.includes('youtu.be/') ? block.backgroundVideo.split('youtu.be/')[1]?.split('?')[0] : new URL(block.backgroundVideo).searchParams.get('v')}`}
-              allow="autoplay"
-              className="absolute inset-0 w-full h-full pointer-events-none scale-[4] md:scale-125"
-              style={{ border: 0 }}
-              tabIndex={-1}
-              aria-hidden="true"
-            />
+          {ytId ? (
+            <>
+              {/* Blurred thumbnail fills entire background — no black space */}
+              <img
+                src={`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover blur-xl scale-110"
+              />
+              {/* Actual video centered on top */}
+              <iframe
+                src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&playlist=${ytId}`}
+                allow="autoplay"
+                className="absolute inset-0 w-full h-full pointer-events-none scale-125"
+                style={{ border: 0 }}
+                tabIndex={-1}
+                aria-hidden="true"
+              />
+            </>
           ) : (
             <video autoPlay muted loop playsInline className="w-full h-full object-cover">
               <source src={block.backgroundVideo} type="video/mp4" />
