@@ -18,7 +18,7 @@ export function Header() {
           <Link href="/" className="flex-shrink-0">
             <Image
               src="/logos/oda-id-logo.svg"
-              alt="ODA Inspiration Day 2026"
+              alt="ODA Inspiration Day"
               width={160}
               height={40}
               className="h-8 md:h-10 w-auto"

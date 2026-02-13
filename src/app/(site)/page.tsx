@@ -28,7 +28,7 @@ export default async function HomePage() {
       <PageTransition>
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl font-black text-dark-blue mb-4">ODA Inspiration Day 2026</h1>
+            <h1 className="text-4xl font-black text-dark-blue mb-4">ODA Inspiration Day</h1>
             <p className="text-lg text-very-dark/60 mb-8">Content is being set up. Visit /studio to add pages.</p>
             <a href="/studio" className="inline-flex items-center px-6 py-3 bg-red text-white rounded-full font-semibold hover:bg-red/90 transition-colors">
               Open Studio

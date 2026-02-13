@@ -4,7 +4,7 @@ import { schemaTypes } from './src/sanity/schemas'
 
 export default defineConfig({
   name: 'oda-inspiration-day',
-  title: 'ODA Inspiration Day 2026',
+  title: 'ODA Inspiration Day',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '8uk0dvi6',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   basePath: '/studio',
