@@ -6,9 +6,35 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
 
+/* ─── Data types (populated from Sanity) ─── */
+
+export type ThemeData = {
+  heroTitle: string
+  heroSubtitle: string
+  marqueeHeading: string
+  marqueeRows: { phrases: string[]; direction: 'left' | 'right'; speed: number; accent: string }[]
+  manifestoParagraphs: string[]
+  stats: { value: number; suffix: string; label: string }[]
+  cardsHeading: string
+  cards: { title: string; description: string; accentColor: string }[]
+  ctaHeading: string
+  ctaBody: string
+  cta: { label: string; href: string } | null
+  secondaryCta: { label: string; href: string } | null
+}
+
+/* ─── Accent mapping ─── */
+
+const accentBgMap: Record<string, string> = {
+  red: 'bg-red', lavender: 'bg-lavender', mint: 'bg-mint', 'dark-blue': 'bg-dark-blue',
+}
+
 /* ─── Glitch keyframes are defined in globals.css ─── */
 
-function GlitchTitle() {
+function GlitchTitle({ title }: { title: string }) {
+  const lines = title.split(' ')
+  const mid = Math.ceil(lines.length / 2)
+
   return (
     <div className="relative inline-block">
       <motion.h1
@@ -16,50 +42,17 @@ function GlitchTitle() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
         className="glitch-text text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-white leading-none tracking-tighter select-none"
-        data-text="DIGITAL PARADOX"
+        data-text={title}
       >
-        DIGITAL
+        {lines.slice(0, mid).join(' ')}
         <br />
-        PARADOX
+        {lines.slice(mid).join(' ')}
       </motion.h1>
     </div>
   )
 }
 
-const marqueeRows = [
-  {
-    phrases: [
-      'It connects millions — yet amplifies the loneliest voices',
-      'It promises equality — yet encodes who gets seen',
-      'It builds bridges — yet deepens the divide',
-    ],
-    direction: 'left' as const,
-    speed: 35,
-    accent: 'text-red',
-  },
-  {
-    phrases: [
-      'It promises objectivity — yet automates our deepest biases',
-      'It learns everything — yet understands nothing',
-      'It predicts the future — yet repeats the past',
-    ],
-    direction: 'right' as const,
-    speed: 28,
-    accent: 'text-lavender',
-  },
-  {
-    phrases: [
-      'It democratises access — yet demands literacy only some have',
-      'It moves us forward — yet leaves half the world behind',
-      'It empowers everyone — yet serves the few',
-    ],
-    direction: 'left' as const,
-    speed: 32,
-    accent: 'text-mint',
-  },
-]
-
-function MarqueeRow({ phrases, direction, speed, accent }: typeof marqueeRows[number]) {
+function MarqueeRow({ phrases, direction, speed, accent }: ThemeData['marqueeRows'][number]) {
   const items = [...phrases, ...phrases]
   const animClass = direction === 'left' ? 'marquee-left' : 'marquee-right'
 
@@ -149,7 +142,7 @@ function ParadoxCard({
   )
 }
 
-export function ThemePageContent() {
+export function ThemePageContent({ data }: { data: ThemeData }) {
   const heroRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -188,16 +181,14 @@ export function ThemePageContent() {
         <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none noise-bg" aria-hidden="true" />
 
         <div className="relative z-10 text-center px-4">
-          <GlitchTitle />
+          <GlitchTitle title={data.heroTitle} />
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
             className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mt-8 font-light"
           >
-            The same technology that promises to unite us — can divide us.
-            <br className="hidden md:block" />
-            This year, we confront the contradictions.
+            {data.heroSubtitle}
           </motion.p>
         </div>
 
@@ -227,11 +218,11 @@ export function ThemePageContent() {
           transition={{ duration: 1 }}
           className="text-white/40 text-sm uppercase tracking-[0.3em] text-center mb-10 font-bold"
         >
-          The paradoxes we live in
+          {data.marqueeHeading}
         </motion.h2>
 
         <div aria-hidden="true">
-          {marqueeRows.map((row, i) => (
+          {data.marqueeRows.map((row, i) => (
             <MarqueeRow key={i} {...row} />
           ))}
         </div>
@@ -244,36 +235,22 @@ export function ThemePageContent() {
 
         <Container className="relative z-10">
           <div className="max-w-4xl mx-auto space-y-8">
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-2xl md:text-3xl lg:text-4xl text-white font-light leading-relaxed"
-            >
-              We live inside a paradox. The same algorithms that connect millions can{' '}
-              <span className="text-red font-bold">reinforce the biases</span> of the few who build them.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="text-2xl md:text-3xl lg:text-4xl text-white font-light leading-relaxed"
-            >
-              Artificial intelligence promises to remove human prejudice — yet it{' '}
-              <span className="text-lavender font-bold">learns from data shaped by centuries of inequality</span>.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xl md:text-2xl text-white/60 leading-relaxed mt-12"
-            >
-              This is the Digital Paradox — the tension between what technology promises and what it
-              delivers when the people building it don&apos;t reflect the world using it.
-            </motion.p>
+            {data.manifestoParagraphs.map((text, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.15 }}
+                className={
+                  i < data.manifestoParagraphs.length - 1
+                    ? 'text-2xl md:text-3xl lg:text-4xl text-white font-light leading-relaxed'
+                    : 'text-xl md:text-2xl text-white/60 leading-relaxed mt-12'
+                }
+              >
+                {text}
+              </motion.p>
+            ))}
           </div>
         </Container>
       </section>
@@ -282,10 +259,9 @@ export function ThemePageContent() {
       <section className="bg-very-dark py-20 md:py-28 border-t border-b border-white/5">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            <AnimatedCounter value={28} suffix="%" label="of AI researchers are women" />
-            <AnimatedCounter value={90} suffix="%" label="of data created in last 2 years" />
-            <AnimatedCounter value={2700} suffix="M" label="people lack internet access" />
-            <AnimatedCounter value={11000} suffix="+" label="ODA members driving change" />
+            {data.stats.map((stat, i) => (
+              <AnimatedCounter key={i} value={stat.value} suffix={stat.suffix} label={stat.label} />
+            ))}
           </div>
         </Container>
       </section>
@@ -300,28 +276,19 @@ export function ThemePageContent() {
             transition={{ duration: 0.7 }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-white text-center mb-16"
           >
-            Exploring the Paradox
+            {data.cardsHeading}
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <ParadoxCard
-              index={0}
-              title="AI & Bias"
-              description="When artificial intelligence learns from biased data, it doesn't eliminate prejudice — it automates it. How do we build AI that's fair by design?"
-              accent="bg-red"
-            />
-            <ParadoxCard
-              index={1}
-              title="Access & Exclusion"
-              description="Digital tools promise to democratise opportunity, but they require infrastructure, literacy, and trust. Who gets left behind in the digital leap?"
-              accent="bg-lavender"
-            />
-            <ParadoxCard
-              index={2}
-              title="Connection & Isolation"
-              description="We're more connected than ever, yet loneliness is rising. Social platforms connect billions but can fragment communities. How do we design for real belonging?"
-              accent="bg-mint"
-            />
+            {data.cards.map((card, i) => (
+              <ParadoxCard
+                key={i}
+                index={i}
+                title={card.title}
+                description={card.description}
+                accent={accentBgMap[card.accentColor] || 'bg-red'}
+              />
+            ))}
           </div>
         </Container>
       </section>
@@ -347,7 +314,7 @@ export function ThemePageContent() {
             transition={{ duration: 0.7 }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
           >
-            Be Part of the Conversation
+            {data.ctaHeading}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -356,8 +323,7 @@ export function ThemePageContent() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10"
           >
-            Join 11,000+ technologists, leaders, and changemakers at ODA Inspiration Day 2026 as
-            we confront the Digital Paradox — together.
+            {data.ctaBody}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -366,17 +332,21 @@ export function ThemePageContent() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-wrap gap-4 justify-center"
           >
-            <Button href="/tickets" size="lg">
-              Get Your Tickets
-            </Button>
-            <Button
-              href="/program"
-              variant="outline"
-              size="lg"
-              className="border-white text-white hover:bg-white hover:text-dark-blue"
-            >
-              See the Program
-            </Button>
+            {data.cta && (
+              <Button href={data.cta.href} size="lg">
+                {data.cta.label}
+              </Button>
+            )}
+            {data.secondaryCta && (
+              <Button
+                href={data.secondaryCta.href}
+                variant="outline"
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-dark-blue"
+              >
+                {data.secondaryCta.label}
+              </Button>
+            )}
           </motion.div>
         </Container>
       </section>
