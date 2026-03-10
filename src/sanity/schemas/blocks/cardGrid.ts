@@ -5,6 +5,7 @@ export default defineType({
   title: 'Card Grid',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({
       name: 'cards', title: 'Cards', type: 'array',

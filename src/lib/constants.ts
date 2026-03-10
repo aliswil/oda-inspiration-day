@@ -11,13 +11,32 @@ export const BRAND_COLORS = {
   mint: '#DDFFD9',
 } as const
 
-export const NAV_ITEMS = [
+export type NavItem = {
+  label: string
+  href: string
+  children?: { label: string; href: string }[]
+}
+
+export const NAV_ITEMS: NavItem[] = [
   { label: 'Theme', href: '/theme' },
   { label: 'Why Attend', href: '/why-attend' },
   { label: 'Program', href: '/program' },
   { label: 'Speakers', href: '/speakers' },
-  { label: 'Tickets', href: '/tickets' },
-  { label: 'Venue', href: '/venue' },
+  {
+    label: 'Venue',
+    href: '/venue',
+    children: [
+      { label: 'Oslo', href: '/venue' },
+      { label: 'Bergen', href: '/bergen' },
+      { label: 'Trondheim', href: '/trondheim' },
+    ],
+  },
   { label: 'ODA Awards', href: '/oda-awards' },
-  { label: 'Team', href: '/team' },
-] as const
+  {
+    label: 'About',
+    href: '/team',
+    children: [
+      { label: 'Team', href: '/team' },
+    ],
+  },
+]

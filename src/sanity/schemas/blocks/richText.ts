@@ -5,11 +5,12 @@ export default defineType({
   title: 'Rich Text',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Section Heading', type: 'string' }),
     defineField({
       name: 'content', title: 'Content', type: 'array',
       of: [
-        { type: 'block', styles: [{ title: 'Normal', value: 'normal' }, { title: 'H2', value: 'h2' }, { title: 'H3', value: 'h3' }, { title: 'H4', value: 'h4' }, { title: 'Quote', value: 'blockquote' }] },
+        { type: 'block', styles: [{ title: 'Normal', value: 'normal' }, { title: 'H2', value: 'h2' }, { title: 'H3', value: 'h3' }, { title: 'H4', value: 'h4' }, { title: 'Quote', value: 'blockquote' }], lists: [{ title: 'Bullet', value: 'bullet' }, { title: 'Numbered', value: 'number' }] },
         { type: 'image', options: { hotspot: true } },
       ],
     }),

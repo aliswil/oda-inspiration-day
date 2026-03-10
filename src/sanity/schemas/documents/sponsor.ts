@@ -7,7 +7,7 @@ export default defineType({
   fields: [
     defineField({ name: 'name', title: 'Name', type: 'string', validation: (r) => r.required() }),
     defineField({ name: 'logo', title: 'Logo', type: 'image' }),
-    defineField({ name: 'tier', title: 'Tier', type: 'string', options: { list: ['platinum', 'gold', 'silver', 'bronze', 'partner'] }, validation: (r) => r.required() }),
+    defineField({ name: 'tier', title: 'Tier', type: 'string', options: { list: ['platinum', 'gold'] }, validation: (r) => r.required() }),
     defineField({ name: 'url', title: 'Website URL', type: 'url' }),
     defineField({ name: 'order', title: 'Display Order', type: 'number' }),
   ],

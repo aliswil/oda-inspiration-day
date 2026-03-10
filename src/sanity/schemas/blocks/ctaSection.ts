@@ -5,6 +5,7 @@ export default defineType({
   title: 'CTA Section',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string', validation: (r) => r.required() }),
     defineField({ name: 'body', title: 'Body Text', type: 'text', rows: 3 }),
     defineField({ name: 'cta', title: 'Primary CTA', type: 'link' }),
