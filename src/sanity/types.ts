@@ -18,8 +18,10 @@ export type Page = {
 }
 
 export type Speaker = {
-  _id: string; name: string; role?: string; company?: string; photo?: SanityImage;
-  bio?: string; isLightningTalk?: boolean; topic?: string; linkedin?: string
+  _id: string; name: string; slug?: string; role?: string; company?: string;
+  photo?: SanityImage; portraitCutout?: SanityImage; secondaryPhoto?: SanityImage;
+  bio?: string; presentationDescription?: string; isLightningTalk?: boolean;
+  topic?: string; videoUrl?: string; linkedin?: string
 }
 
 export type TeamMember = { _id: string; name: string; role?: string; photo?: SanityImage; linkedin?: string }
@@ -53,7 +55,8 @@ export type RichTextBlock = {
 
 export type SpeakerGridBlock = {
   _type: 'speakerGrid'; _key: string; heading?: string; subheading?: string;
-  filter?: 'all' | 'keynote' | 'lightning'; backgroundColor?: string
+  filter?: 'all' | 'keynote' | 'lightning'; backgroundColor?: string;
+  showComingSoon?: boolean
 }
 
 export type ScheduleSession = {

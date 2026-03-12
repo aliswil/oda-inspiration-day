@@ -1,5 +1,5 @@
 export { pageBySlugQuery, allPageSlugsQuery, homePageQuery } from './page'
-export { allSpeakersQuery, keynoteSpeakersQuery, lightningSpeakersQuery } from './speaker'
+export { allSpeakersQuery, keynoteSpeakersQuery, lightningSpeakersQuery, speakerBySlugQuery, allSpeakerSlugsQuery } from './speaker'
 export { allTeamMembersQuery } from './teamMember'
 export { allSponsorsQuery, sponsorsByTierQuery } from './sponsor'
 export { siteSettingsQuery } from './siteSettings'

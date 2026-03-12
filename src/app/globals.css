@@ -132,6 +132,17 @@ body {
   100% { transform: translateX(0); }
 }
 
+/* ─── Partner carousel loop ─── */
+.partner-marquee {
+  animation: partner-scroll linear infinite;
+  width: max-content;
+}
+
+@keyframes partner-scroll {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
 /* ─── Theme background slow pan ─── */
 .theme-bg-animate {
   animation: theme-bg-pan 30s ease-in-out infinite alternate;
@@ -161,6 +172,9 @@ body {
   }
   .marquee-left,
   .marquee-right {
+    animation: none;
+  }
+  .partner-marquee {
     animation: none;
   }
 }

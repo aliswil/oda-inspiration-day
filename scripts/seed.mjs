@@ -62,6 +62,10 @@ async function main() {
 
   // Create speakers
   console.log('\nCreating speakers...')
+  function toSlug(name) {
+    return name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').trim()
+  }
+
   const speakers = [
     { name: 'Maria Johansen', role: 'CTO', company: 'Nordic Tech', topic: 'Building Inclusive Engineering Teams', isLightningTalk: false, photo: img1 },
     { name: 'Aisha Patel', role: 'VP of Engineering', company: 'Spotify', topic: 'Scaling Diversity in Product Teams', isLightningTalk: false, photo: img2 },
@@ -80,6 +84,7 @@ async function main() {
     const doc = await client.create({
       _type: 'speaker',
       name: s.name,
+      slug: { _type: 'slug', current: toSlug(s.name) },
       role: s.role,
       company: s.company,
       topic: s.topic,

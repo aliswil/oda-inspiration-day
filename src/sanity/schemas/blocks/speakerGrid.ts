@@ -9,6 +9,7 @@ export default defineType({
     defineField({ name: 'subheading', title: 'Subheading', type: 'text', rows: 2 }),
     defineField({ name: 'filter', title: 'Filter', type: 'string', options: { list: ['all', 'keynote', 'lightning'] }, initialValue: 'all' }),
     defineField({ name: 'backgroundColor', title: 'Background Color', type: 'string', options: { list: ['cream', 'lavender', 'white', 'mint'] }, initialValue: 'cream' }),
+    defineField({ name: 'showComingSoon', title: 'Show "More to Come" Placeholder', type: 'boolean', initialValue: true }),
   ],
   preview: { select: { title: 'heading', filter: 'filter' }, prepare({ title, filter }) { return { title: title || 'Speaker Grid', subtitle: filter } } },
 })
