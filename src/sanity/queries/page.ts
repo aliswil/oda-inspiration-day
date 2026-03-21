@@ -34,3 +34,19 @@ export const homePageQuery = groq`
     blocks[] { ${blockContentProjection} }
   }
 `
+
+export const themePageQuery = groq`
+  *[_type == "page" && slug.current == "theme"][0] {
+    _id, title, "slug": slug.current,
+    seo { title, description, "ogImage": ogImage.asset->url },
+    blocks[] { ... }
+  }
+`
+
+export const whyAttendPageQuery = groq`
+  *[_type == "page" && slug.current == "why-attend"][0] {
+    _id, title, "slug": slug.current,
+    seo { title, description, "ogImage": ogImage.asset->url },
+    blocks[] { ... }
+  }
+`

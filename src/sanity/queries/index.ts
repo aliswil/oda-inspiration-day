@@ -1,4 +1,4 @@
-export { pageBySlugQuery, allPageSlugsQuery, homePageQuery } from './page'
+export { pageBySlugQuery, allPageSlugsQuery, homePageQuery, themePageQuery, whyAttendPageQuery } from './page'
 export { allSpeakersQuery, keynoteSpeakersQuery, lightningSpeakersQuery, speakerBySlugQuery, allSpeakerSlugsQuery } from './speaker'
 export { allTeamMembersQuery } from './teamMember'
 export { allSponsorsQuery, sponsorsByTierQuery } from './sponsor'

@@ -1,18 +1,18 @@
 import { notFound } from 'next/navigation'
 import { client } from '@/sanity/client'
+import { whyAttendPageQuery } from '@/sanity/queries'
+import { generatePageMetadata } from '@/lib/metadata'
 import { urlFor } from '@/sanity/image'
 import { WhyAttendContent, type WhyAttendData } from '@/components/why-attend/WhyAttendContent'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Why Attend — ODA Inspiration Day 2026',
-  description:
-    'The largest diversity in tech conference in the Nordics. 1,400 attendees, 80+ partners, and topics the industry needs but rarely hears. Oslo Concert Hall, 29 May 2026.',
-  openGraph: {
-    title: 'Why Attend — ODA Inspiration Day 2026',
-    description:
-      '1,400 technology professionals in one room. 80% women. Topics the industry needs. One day that shifts how your organisation thinks about tech.',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const page = await client.fetch(whyAttendPageQuery)
+    return generatePageMetadata(page?.seo, 'why-attend')
+  } catch {
+    return {}
+  }
 }
 
 type SanityBlock = {
@@ -23,9 +23,11 @@ type SanityBlock = {
   backgroundImage?: { asset: { _ref: string } }
   backgroundColor?: string
   stats?: { value: number; suffix: string; label: string }[]
-  cards?: { title: string; description: string; accentColor: string }[]
+  cards?: { title: string; description: unknown[]; accentColor: string }[]
   cta?: { label: string; href: string; isExternal?: boolean }
   secondaryCta?: { label: string; href: string; isExternal?: boolean }
+  emailSubject?: string
+  emailBody?: string
 }
 
 function mapSanityToProps(blocks: SanityBlock[]): WhyAttendData {
@@ -44,6 +46,7 @@ function mapSanityToProps(blocks: SanityBlock[]): WhyAttendData {
   return {
     heroHeading: hero?.heading || 'Why Attend',
     heroSubheading: hero?.subheading || '',
+    heroDateLocation: hero?.body || '',
     heroImageUrl,
     stats: stats?.stats?.map((s) => ({
       value: s.value,
@@ -53,13 +56,16 @@ function mapSanityToProps(blocks: SanityBlock[]): WhyAttendData {
     reasonsHeading: cards?.heading || '',
     reasons: cards?.cards?.map((c) => ({
       title: c.title,
-      description: c.description,
+      description: Array.isArray(c.description) ? c.description : [],
       accentColor: c.accentColor || 'red',
     })) || [],
+    managerLabel: managerCta?.subheading || '',
     managerHeading: managerCta?.heading || '',
     managerBody: managerCta?.body || '',
     managerCta: managerCta?.cta ? { label: managerCta.cta.label, href: managerCta.cta.href } : null,
     managerSecondaryCta: managerCta?.secondaryCta ? { label: managerCta.secondaryCta.label, href: managerCta.secondaryCta.href } : null,
+    managerEmailSubject: managerCta?.emailSubject || '',
+    managerEmailBody: managerCta?.emailBody || '',
     finalHeading: finalCta?.heading || '',
     finalBody: finalCta?.body || '',
     finalCta: finalCta?.cta ? { label: finalCta.cta.label, href: finalCta.cta.href } : null,
@@ -69,9 +75,7 @@ function mapSanityToProps(blocks: SanityBlock[]): WhyAttendData {
 export default async function WhyAttendPage() {
   let page: { blocks: SanityBlock[] } | null = null
   try {
-    page = await client.fetch(
-      `*[_type == "page" && slug.current == "why-attend"][0]{ blocks[] { ... } }`
-    )
+    page = await client.fetch(whyAttendPageQuery)
   } catch { /* fall through */ }
 
   if (!page) notFound()

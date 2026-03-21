@@ -1,17 +1,17 @@
 import { notFound } from 'next/navigation'
 import { client } from '@/sanity/client'
+import { themePageQuery } from '@/sanity/queries'
+import { generatePageMetadata } from '@/lib/metadata'
 import { ThemePageContent, type ThemeData } from '@/components/theme/ThemePageContent'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Digital Paradox — ODA Inspiration Day 2026',
-  description:
-    'Technology promises to unite us — yet it can divide. At ODA Inspiration Day 2026, we confront the Digital Paradox: the tension between what technology promises and what it delivers.',
-  openGraph: {
-    title: 'Digital Paradox — ODA Inspiration Day 2026',
-    description:
-      'The tension between what technology promises and what it delivers when the people building it don\'t reflect the world using it.',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const page = await client.fetch(themePageQuery)
+    return generatePageMetadata(page?.seo, 'theme')
+  } catch {
+    return {}
+  }
 }
 
 type SanityBlock = {
@@ -103,9 +103,7 @@ function mapSanityToThemeData(blocks: SanityBlock[]): ThemeData {
 export default async function ThemePage() {
   let page: { blocks: SanityBlock[] } | null = null
   try {
-    page = await client.fetch(
-      `*[_type == "page" && slug.current == "theme"][0]{ blocks[] { ... } }`
-    )
+    page = await client.fetch(themePageQuery)
   } catch { /* fall through */ }
 
   if (!page) notFound()
