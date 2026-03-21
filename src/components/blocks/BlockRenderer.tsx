@@ -44,6 +44,7 @@ export function BlockRenderer({ blocks }: BlockRendererProps) {
   return (
     <>
       {blocks.map((block) => {
+        if ('enabled' in block && block.enabled === false) return null
         const Component = blockComponents[block._type]
         if (!Component) {
           console.warn(`Unknown block type: ${block._type}`)

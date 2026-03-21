@@ -1,8 +1,7 @@
 import { Container } from '@/components/ui/Container'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
-import { SanityImage } from '@/components/ui/SanityImage'
-import { Button } from '@/components/ui/Button'
+import { PortableTextRenderer } from '@/components/portable-text/PortableTextRenderer'
 import { cn } from '@/lib/utils'
 import type { CardGridBlock as CardGridBlockType } from '@/sanity/types'
 
@@ -40,26 +39,12 @@ export function CardGridBlock({ block }: { block: CardGridBlockType }) {
                 {card.accentColor && (
                   <div className={cn('h-1.5', accentMap[card.accentColor])} />
                 )}
-                {card.image && (
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <SanityImage
-                      image={card.image}
-                      fill
-                      sizes={`(max-width: 768px) 100vw, ${Math.floor(100 / cols)}vw`}
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-very-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-                )}
                 <div className="p-6 md:p-8">
                   <h3 className="font-black text-xl md:text-2xl text-dark-blue mb-3">{card.title}</h3>
                   {card.description && (
-                    <p className="text-very-dark/60 mb-5 line-clamp-3 leading-relaxed">{card.description}</p>
-                  )}
-                  {card.link && (
-                    <Button href={card.link.href} isExternal={card.link.isExternal} variant="ghost" size="sm" className="text-red hover:text-dark-blue -ml-4 font-bold">
-                      {card.link.label} &rarr;
-                    </Button>
+                    <div className="text-very-dark/60 mb-5 leading-relaxed">
+                      <PortableTextRenderer content={card.description} />
+                    </div>
                   )}
                 </div>
               </div>

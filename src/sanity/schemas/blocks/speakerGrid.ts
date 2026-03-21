@@ -5,6 +5,7 @@ export default defineType({
   title: 'Speaker Grid',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({ name: 'subheading', title: 'Subheading', type: 'text', rows: 2 }),
     defineField({ name: 'filter', title: 'Filter', type: 'string', options: { list: ['all', 'keynote', 'lightning'] }, initialValue: 'all' }),

@@ -5,6 +5,7 @@ export default defineType({
   title: 'Team Grid',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({ name: 'subheading', title: 'Subheading', type: 'text', rows: 2 }),
     defineField({ name: 'backgroundColor', title: 'Background Color', type: 'string', options: { list: ['cream', 'lavender', 'white'] }, initialValue: 'cream' }),

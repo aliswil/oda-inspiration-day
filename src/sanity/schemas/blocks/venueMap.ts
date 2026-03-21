@@ -5,6 +5,7 @@ export default defineType({
   title: 'Venue Map',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
     defineField({ name: 'venueImage', title: 'Venue Image / Map', type: 'image', options: { hotspot: true } }),

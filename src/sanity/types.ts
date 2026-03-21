@@ -107,8 +107,8 @@ export type PartnerGridBlock = {
 }
 
 export type CardItem = {
-  _key: string; title: string; description?: string;
-  image?: SanityImage; link?: SanityLink; accentColor?: string
+  _key: string; title: string; description?: PortableTextBlock[];
+  accentColor?: string
 }
 
 export type CardGridBlock = {

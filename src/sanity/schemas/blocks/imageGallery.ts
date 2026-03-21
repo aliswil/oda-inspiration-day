@@ -5,6 +5,7 @@ export default defineType({
   title: 'Image Gallery',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({
       name: 'images', title: 'Images', type: 'array',

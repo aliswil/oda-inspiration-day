@@ -5,6 +5,7 @@ export default defineType({
   title: 'Video Carousel',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({
       name: 'videos',

@@ -5,6 +5,7 @@ export default defineType({
   title: 'Quote',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'text', title: 'Quote Text', type: 'text', rows: 4, validation: (r) => r.required() }),
     defineField({ name: 'author', title: 'Author', type: 'string' }),
     defineField({ name: 'authorRole', title: 'Author Role', type: 'string' }),

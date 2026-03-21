@@ -5,6 +5,7 @@ export default defineType({
   title: 'Video Embed',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({ name: 'url', title: 'Video URL (YouTube/Vimeo)', type: 'url', validation: (r) => r.required() }),
     defineField({ name: 'thumbnail', title: 'Custom Thumbnail', type: 'image', options: { hotspot: true } }),

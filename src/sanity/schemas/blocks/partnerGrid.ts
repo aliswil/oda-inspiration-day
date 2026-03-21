@@ -5,6 +5,7 @@ export default defineType({
   title: 'Partner Grid',
   type: 'object',
   fields: [
+    defineField({ name: 'enabled', title: 'Enabled', type: 'boolean', initialValue: true }),
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({ name: 'showTiers', title: 'Show Tier Headers?', type: 'boolean', initialValue: true }),
     defineField({ name: 'backgroundColor', title: 'Background Color', type: 'string', options: { list: ['cream', 'white', 'lavender'] }, initialValue: 'white' }),
