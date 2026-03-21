@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
@@ -35,7 +36,7 @@ export function CardGridBlock({ block }: { block: CardGridBlockType }) {
         <div className={cn('grid gap-6 md:gap-8', colsMap[cols])}>
           {block.cards?.map((card, i) => (
             <AnimatedSection key={card._key} delay={i * 0.1} animation="fadeUp">
-              <div className="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <CardWrapper link={card.link}>
                 {card.accentColor && (
                   <div className={cn('h-1.5', accentMap[card.accentColor])} />
                 )}
@@ -46,12 +47,30 @@ export function CardGridBlock({ block }: { block: CardGridBlockType }) {
                       <PortableTextRenderer content={card.description} />
                     </div>
                   )}
+                  {card.link && (
+                    <span className="inline-block text-sm font-bold text-red group-hover:underline">
+                      {card.link.label} &rarr;
+                    </span>
+                  )}
                 </div>
-              </div>
+              </CardWrapper>
             </AnimatedSection>
           ))}
         </div>
       </Container>
     </SectionWrapper>
   )
+}
+
+function CardWrapper({ link, children }: { link?: { href: string; isExternal?: boolean }; children: React.ReactNode }) {
+  const classes = 'group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2'
+
+  if (link) {
+    if (link.isExternal) {
+      return <a href={link.href} target="_blank" rel="noopener noreferrer" className={cn(classes, 'block')}>{children}</a>
+    }
+    return <Link href={link.href} className={cn(classes, 'block')}>{children}</Link>
+  }
+
+  return <div className={classes}>{children}</div>
 }

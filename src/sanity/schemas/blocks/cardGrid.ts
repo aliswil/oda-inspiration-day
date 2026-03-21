@@ -14,6 +14,7 @@ export default defineType({
         fields: [
           defineField({ name: 'title', title: 'Title', type: 'string', validation: (r) => r.required() }),
           defineField({ name: 'description', title: 'Description', type: 'array', of: [{ type: 'block' }] }),
+          defineField({ name: 'link', title: 'Link', type: 'link' }),
           defineField({ name: 'accentColor', title: 'Accent Color', type: 'string', options: { list: ['lavender', 'red', 'mint', 'dark-blue'] } }),
         ],
         preview: { select: { title: 'title' } },
