@@ -224,7 +224,7 @@ async function main() {
         heading: 'Ready to be Inspired?',
         body: 'Join 1,200+ tech professionals for a day of inspiration, learning, and connection.',
         backgroundColor: 'red',
-        primaryCta: { _type: 'link', label: 'Get Your Ticket Now', href: '/tickets', isExternal: false },
+        cta: { _type: 'link', label: 'Get Your Ticket Now', href: '/tickets', isExternal: false },
         secondaryCta: { _type: 'link', label: 'Become a Partner', href: '/venue', isExternal: false },
       },
       {
@@ -329,7 +329,7 @@ async function main() {
         heading: 'Early Bird Tickets Available',
         body: 'Early bird pricing available until March 31.Regular tickets from NOK 1,990. Student tickets from NOK 490.',
         backgroundColor: 'lavender',
-        primaryCta: { _type: 'link', label: 'Buy Tickets', href: 'https://tickets.odanettverk.no', isExternal: true },
+        cta: { _type: 'link', label: 'Buy Tickets', href: 'https://tickets.odanettverk.no', isExternal: true },
       },
       {
         _type: 'faqAccordion',
@@ -490,7 +490,7 @@ async function main() {
         heading: 'Don\'t Miss the Party',
         body: 'The afterparty starts right after the closing ceremony. Your conference ticket is your entry pass.',
         backgroundColor: 'dark-blue',
-        primaryCta: { _type: 'link', label: 'Get Your Ticket', href: '/tickets', isExternal: false },
+        cta: { _type: 'link', label: 'Get Your Ticket', href: '/tickets', isExternal: false },
       },
     ],
   })
@@ -538,7 +538,7 @@ async function main() {
       { _key: 'n6', _type: 'navItem', label: 'Team', href: '/team' },
     ],
     socialLinks: [
-      { _key: 'sl1', _type: 'socialLink', platform: 'linkedin', url: 'https://linkedin.com/company/oda-nettverk' },
+      { _key: 'sl1', _type: 'socialLink', platform: 'linkedin', url: 'https://www.linkedin.com/company/oda---women-in-tech-network/' },
       { _key: 'sl2', _type: 'socialLink', platform: 'instagram', url: 'https://instagram.com/odanettverk' },
     ],
   })
