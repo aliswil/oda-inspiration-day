@@ -541,6 +541,15 @@ async function main() {
           { ...img10, _key: 'g3', alt: 'Award celebration' },
         ],
       },
+      {
+        _type: 'ctaSection',
+        _key: 'cta1',
+        enabled: true,
+        heading: 'Learn More About ODA-prisen',
+        body: 'Discover the history, categories, and previous winners of the ODA Awards on our main site.',
+        cta: { _type: 'link', label: 'Read more about ODA-prisen', href: 'https://odanettverk.no/initiativer/oda-prisen/', isExternal: true },
+        backgroundColor: 'dark-blue',
+      },
     ],
   })
   console.log('  Created: ODA Awards')
