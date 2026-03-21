@@ -8,16 +8,35 @@ import { BlobDecoration } from '@/components/ui/BlobDecoration'
 import { HeroLogoAnimation } from '@/components/ui/HeroLogoAnimation'
 import type { HeroBlock as HeroBlockType } from '@/sanity/types'
 
-const heightMap = {
-  fullscreen: 'min-h-screen',
-  tall: 'min-h-[80vh]',
-  medium: 'min-h-[60vh]',
-}
+const heightMap = { fullscreen: 'min-h-screen', tall: 'min-h-[80vh]', medium: 'min-h-[60vh]' }
 
 function getYouTubeId(url: string): string | null {
   if (url.includes('youtu.be/')) return url.split('youtu.be/')[1]?.split('?')[0] || null
   if (url.includes('youtube.com/watch')) return new URL(url).searchParams.get('v')
   return null
+}
+
+function HeroCtas({ cta, secondaryCta }: Pick<HeroBlockType, 'cta' | 'secondaryCta'>) {
+  return (
+    <>
+      {cta && (
+        <Button href={cta.href} isExternal={cta.isExternal} size="lg">
+          {cta.label}
+        </Button>
+      )}
+      {secondaryCta && (
+        <Button
+          href={secondaryCta.href}
+          isExternal={secondaryCta.isExternal}
+          variant="outline"
+          size="lg"
+          className="border-white text-white hover:bg-white hover:text-dark-blue"
+        >
+          {secondaryCta.label}
+        </Button>
+      )}
+    </>
+  )
 }
 
 export function HeroBlock({ block }: { block: HeroBlockType }) {
@@ -73,22 +92,7 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
               transition={{ duration: 0.8, delay: 1.2 }}
               className="flex flex-wrap gap-4 justify-center mt-32"
             >
-              {block.cta && (
-                <Button href={block.cta.href} isExternal={block.cta.isExternal} size="lg">
-                  {block.cta.label}
-                </Button>
-              )}
-              {block.secondaryCta && (
-                <Button
-                  href={block.secondaryCta.href}
-                  isExternal={block.secondaryCta.isExternal}
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white hover:bg-white hover:text-dark-blue"
-                >
-                  {block.secondaryCta.label}
-                </Button>
-              )}
+              <HeroCtas cta={block.cta} secondaryCta={block.secondaryCta} />
             </motion.div>
           </>
         ) : (
@@ -119,22 +123,7 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-wrap gap-4 justify-center"
             >
-              {block.cta && (
-                <Button href={block.cta.href} isExternal={block.cta.isExternal} size="lg">
-                  {block.cta.label}
-                </Button>
-              )}
-              {block.secondaryCta && (
-                <Button
-                  href={block.secondaryCta.href}
-                  isExternal={block.secondaryCta.isExternal}
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white hover:bg-white hover:text-dark-blue"
-                >
-                  {block.secondaryCta.label}
-                </Button>
-              )}
+              <HeroCtas cta={block.cta} secondaryCta={block.secondaryCta} />
             </motion.div>
           </>
         )}
