@@ -163,18 +163,12 @@ body {
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .glitch-text::before,
-  .glitch-text::after {
-    animation: none;
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  .theme-bg-animate {
-    animation: none;
-  }
-  .marquee-left,
-  .marquee-right {
-    animation: none;
-  }
-  .partner-marquee {
-    animation: none;
+  html {
+    scroll-behavior: auto;
   }
 }

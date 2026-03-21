@@ -1,16 +1,18 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { useInView } from 'framer-motion'
+import { useInView, useReducedMotion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import type { StatsCounterBlock as StatsCounterBlockType, StatItem } from '@/sanity/types'
 
 function Counter({ stat, inView }: { stat: StatItem; inView: boolean }) {
+  const prefersReduced = useReducedMotion()
   const [count, setCount] = useState(0)
 
   useEffect(() => {
     if (!inView) return
+    if (prefersReduced) { setCount(stat.value); return }
     const target = stat.value
     const duration = 2000
     const steps = 60
@@ -26,11 +28,11 @@ function Counter({ stat, inView }: { stat: StatItem; inView: boolean }) {
       }
     }, duration / steps)
     return () => clearInterval(timer)
-  }, [inView, stat.value])
+  }, [inView, stat.value, prefersReduced])
 
   return (
-    <div className="text-center">
-      <div className="text-5xl md:text-6xl lg:text-7xl font-black mb-2 tabular-nums">
+    <div className="text-center" aria-label={`${stat.value.toLocaleString()}${stat.suffix || ''} ${stat.label}`}>
+      <div className="text-5xl md:text-6xl lg:text-7xl font-black mb-2 tabular-nums" aria-hidden="true">
         {count.toLocaleString()}{stat.suffix || ''}
       </div>
       <div className="text-sm md:text-base opacity-70 font-bold uppercase tracking-widest">

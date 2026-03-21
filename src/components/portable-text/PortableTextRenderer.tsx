@@ -37,6 +37,18 @@ const components: PortableTextComponents = {
       </a>
     ),
   },
+  list: {
+    bullet: ({ children }) => (
+      <ul className="list-disc pl-6 mb-6 space-y-2 text-lg leading-relaxed text-very-dark/80">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal pl-6 mb-6 space-y-2 text-lg leading-relaxed text-very-dark/80">{children}</ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => <li>{children}</li>,
+    number: ({ children }) => <li>{children}</li>,
+  },
   types: {
     image: ({ value }) => {
       if (!value?.asset) return null
@@ -65,6 +77,6 @@ type PortableTextRendererProps = {
 }
 
 export function PortableTextRenderer({ content }: PortableTextRendererProps) {
-  if (!content) return null
+  if (!content || !Array.isArray(content)) return null
   return <PortableText value={content} components={components} />
 }

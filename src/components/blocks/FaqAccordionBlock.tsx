@@ -30,13 +30,15 @@ export function FaqAccordionBlock({ block }: { block: FaqAccordionBlockType }) {
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
                   className="w-full flex items-center justify-between px-6 py-5 text-left"
+                  aria-expanded={openIndex === i}
+                  aria-controls={`faq-${item._key}`}
                 >
                   <span className="font-bold text-dark-blue pr-4 text-lg">{item.question}</span>
                   <span className={cn(
                     'flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-lavender text-red transition-transform duration-300',
                     openIndex === i && 'rotate-45'
                   )}>
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                       <line x1="7" y1="0" x2="7" y2="14" />
                       <line x1="0" y1="7" x2="14" y2="7" />
                     </svg>
@@ -45,6 +47,9 @@ export function FaqAccordionBlock({ block }: { block: FaqAccordionBlockType }) {
                 <AnimatePresence>
                   {openIndex === i && item.answer && (
                     <motion.div
+                      id={`faq-${item._key}`}
+                      role="region"
+                      aria-label={item.question}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

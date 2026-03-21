@@ -33,9 +33,9 @@ export function ScheduleBlock({ block }: { block: ScheduleBlockType }) {
                 session.tag === 'break' && 'opacity-70'
               )}>
                 <div className="w-20 md:w-28 flex-shrink-0">
-                  <span className="text-sm md:text-base font-bold text-red">
+                  <time className="text-sm md:text-base font-bold text-red">
                     {session.time}
-                  </span>
+                  </time>
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-start gap-2 mb-1">
