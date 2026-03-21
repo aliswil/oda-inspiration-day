@@ -22,6 +22,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Why Attend', href: '/why-attend' },
   { label: 'Program', href: '/program' },
   { label: 'Speakers', href: '/speakers' },
+  { label: 'Tickets', href: '/tickets' },
   {
     label: 'Venue',
     href: '/venue',

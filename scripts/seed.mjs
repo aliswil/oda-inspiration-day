@@ -184,12 +184,12 @@ async function main() {
         heading: 'Explore the Event',
         columns: 3,
         cards: [
-          { _key: 'c1', title: 'Program', description: 'Discover keynotes, panels, and lightning talks from industry leaders.', link: { _type: 'link', label: 'View Program', href: '/program', isExternal: false }, accentColor: 'red' },
-          { _key: 'c2', title: 'Speakers', description: 'Meet the brilliant minds shaping the future of tech and diversity.', link: { _type: 'link', label: 'See Speakers', href: '/speakers', isExternal: false }, accentColor: 'lavender' },
-          { _key: 'c3', title: 'Tickets', description: 'Secure your spot at the most inspiring day of the year.', link: { _type: 'link', label: 'Get Tickets', href: '/tickets', isExternal: false }, accentColor: 'mint' },
-          { _key: 'c4', title: 'Venue', description: 'Oslo Spektrum — right in the heart of the city.', link: { _type: 'link', label: 'See Venue', href: '/venue', isExternal: false }, accentColor: 'dark-blue' },
-          { _key: 'c5', title: 'ODA Awards', description: 'Celebrating outstanding contributions to diversity in tech.', link: { _type: 'link', label: 'Learn More', href: '/oda-awards', isExternal: false }, accentColor: 'red' },
-          { _key: 'c6', title: 'Afterparty', description: 'The networking continues after hours. Don\'t miss it.', link: { _type: 'link', label: 'Details', href: '/afterparty', isExternal: false }, accentColor: 'lavender' },
+          { _key: 'c1', title: 'Program', description: [{ _type: 'block', _key: 'dc1', style: 'normal', children: [{ _type: 'span', _key: 'ds1', text: 'Discover keynotes, panels, and lightning talks from industry leaders.' }] }], link: { _type: 'link', label: 'View Program', href: '/program', isExternal: false }, accentColor: 'red' },
+          { _key: 'c2', title: 'Speakers', description: [{ _type: 'block', _key: 'dc2', style: 'normal', children: [{ _type: 'span', _key: 'ds2', text: 'Meet the brilliant minds shaping the future of tech and diversity.' }] }], link: { _type: 'link', label: 'See Speakers', href: '/speakers', isExternal: false }, accentColor: 'lavender' },
+          { _key: 'c3', title: 'Tickets', description: [{ _type: 'block', _key: 'dc3', style: 'normal', children: [{ _type: 'span', _key: 'ds3', text: 'Secure your spot at the most inspiring day of the year.' }] }], link: { _type: 'link', label: 'Get Tickets', href: '/tickets', isExternal: false }, accentColor: 'mint' },
+          { _key: 'c4', title: 'Venue', description: [{ _type: 'block', _key: 'dc4', style: 'normal', children: [{ _type: 'span', _key: 'ds4', text: 'Oslo Spektrum — right in the heart of the city.' }] }], link: { _type: 'link', label: 'See Venue', href: '/venue', isExternal: false }, accentColor: 'dark-blue' },
+          { _key: 'c5', title: 'ODA Awards', description: [{ _type: 'block', _key: 'dc5', style: 'normal', children: [{ _type: 'span', _key: 'ds5', text: 'Celebrating outstanding contributions to diversity in tech.' }] }], link: { _type: 'link', label: 'Learn More', href: '/oda-awards', isExternal: false }, accentColor: 'red' },
+          { _key: 'c6', title: 'Afterparty', description: [{ _type: 'block', _key: 'dc6', style: 'normal', children: [{ _type: 'span', _key: 'ds6', text: 'The networking continues after hours. Don\'t miss it.' }] }], link: { _type: 'link', label: 'Details', href: '/afterparty', isExternal: false }, accentColor: 'lavender' },
         ],
       },
       {
@@ -259,14 +259,6 @@ async function main() {
         subheading: 'Our main stage presenters bringing bold ideas and fresh perspectives.',
         filter: 'keynote',
       },
-      {
-        _type: 'speakerGrid',
-        _key: 'sg2',
-        heading: 'Lightning Talk Speakers',
-        subheading: 'Quick, powerful talks that pack a punch.',
-        filter: 'lightning',
-        backgroundColor: 'lavender',
-      },
     ],
   })
   console.log('  Created: Speakers')
@@ -314,32 +306,150 @@ async function main() {
     _type: 'page',
     title: 'Tickets',
     slug: { _type: 'slug', current: 'tickets' },
+    seo: {
+      _type: 'seo',
+      title: 'Tickets — ODA Inspiration Day 2026',
+      description: 'Get your ticket for ODA Inspiration Day 2026. Physical and digital tickets available from 29th April. Includes exhibition access, main stage, lunch, and more.',
+    },
     blocks: [
+      // Block 1: Hero
       {
         _type: 'hero',
         _key: 'hero1',
         heading: 'Get Your Tickets',
-        subheading: 'Secure your spot at ODA Inspiration Day.',
+        subheading: 'Tickets available 29th April 2026',
         style: 'medium',
         backgroundImage: img17,
+        cta: { _type: 'link', label: 'Become an ODA Member', href: 'https://www.odanettverk.no/bli-medlem', isExternal: true },
+        secondaryCta: { _type: 'link', label: 'Update Your Profile', href: 'https://www.odanettverk.no/min-side', isExternal: true },
       },
+      // Block 2: Ticket info intro
+      {
+        _type: 'richText',
+        _key: 'info1',
+        narrowWidth: true,
+        backgroundColor: 'cream',
+        content: [
+          {
+            _type: 'block', _key: 'b1', style: 'normal',
+            children: [
+              { _type: 'span', _key: 's1', text: 'Tickets will be available on 29th April 2026!' },
+            ],
+          },
+          {
+            _type: 'block', _key: 'b2', style: 'normal',
+            children: [
+              { _type: 'span', _key: 's2', text: 'Make sure to ' },
+              {
+                _type: 'span', _key: 's3', text: 'update your ODA membership profile',
+                marks: ['link1'],
+              },
+              { _type: 'span', _key: 's4', text: ' or ' },
+              {
+                _type: 'span', _key: 's5', text: 'become an ODA member',
+                marks: ['link2'],
+              },
+              { _type: 'span', _key: 's6', text: ' to secure your ticket once registration opens.' },
+            ],
+            markDefs: [
+              { _type: 'link', _key: 'link1', href: 'https://www.odanettverk.no/min-side' },
+              { _type: 'link', _key: 'link2', href: 'https://www.odanettverk.no/bli-medlem' },
+            ],
+          },
+          {
+            _type: 'block', _key: 'b3', style: 'normal',
+            children: [
+              { _type: 'span', _key: 's7', text: 'To improve the experience of ODA Inspiration Day, we are introducing a ticket fee this year. The cost will be XXX NOK and the ticket includes:' },
+            ],
+          },
+        ],
+      },
+      // Block 3: What's included (card grid)
+      {
+        _type: 'cardGrid',
+        _key: 'inclusions1',
+        heading: "What's Included in Your Ticket",
+        columns: 3,
+        cards: [
+          {
+            _key: 'c1', title: 'Partner Exhibition',
+            description: [{ _type: 'block', _key: 'd1', style: 'normal', children: [{ _type: 'span', _key: 't1', text: 'Access to the Inspiration Day exhibition with all our partners.' }] }],
+            accentColor: 'lavender',
+          },
+          {
+            _key: 'c2', title: 'Main Stage Programme',
+            description: [{ _type: 'block', _key: 'd2', style: 'normal', children: [{ _type: 'span', _key: 't2', text: 'The full main stage programme with inspiring speakers and interesting talks.' }] }],
+            accentColor: 'red',
+          },
+          {
+            _key: 'c3', title: 'Fish Bowl Side Event',
+            description: [{ _type: 'block', _key: 'd3', style: 'normal', children: [{ _type: 'span', _key: 't3', text: 'Our "fish bowl" side event hosted during the lunch break.' }] }],
+            accentColor: 'mint',
+          },
+          {
+            _key: 'c4', title: 'Lunch, Coffee & Tea',
+            description: [{ _type: 'block', _key: 'd4', style: 'normal', children: [{ _type: 'span', _key: 't4', text: 'Lunch, coffee and tea is included in the price.' }] }],
+            accentColor: 'dark-blue',
+          },
+          {
+            _key: 'c5', title: 'Coworking Space',
+            description: [{ _type: 'block', _key: 'd5', style: 'normal', children: [{ _type: 'span', _key: 't5', text: 'Access to our new coworking space and start-up wall.' }] }],
+            accentColor: 'lavender',
+          },
+          {
+            _key: 'c6', title: 'And More',
+            description: [{ _type: 'block', _key: 'd6', style: 'normal', children: [{ _type: 'span', _key: 't6', text: 'Stay tuned for additional surprises and experiences.' }] }],
+            accentColor: 'red',
+          },
+        ],
+      },
+      // Block 4: Why attend CTA
       {
         _type: 'ctaSection',
-        _key: 'cta1',
-        heading: 'Early Bird Tickets Available',
-        body: 'Early bird pricing available until March 31.Regular tickets from NOK 1,990. Student tickets from NOK 490.',
+        _key: 'ctaWhyAttend',
+        heading: 'Want to Know More?',
+        body: 'Learn about everything ODA Inspiration Day has to offer.',
         backgroundColor: 'lavender',
-        cta: { _type: 'link', label: 'Buy Tickets', href: 'https://tickets.odanettverk.no', isExternal: true },
+        cta: { _type: 'link', label: 'Why Attend', href: '/why-attend', isExternal: false },
       },
+      // Block 5: Digital attendance
       {
-        _type: 'faqAccordion',
-        _key: 'faq1',
-        heading: 'Ticket FAQ',
-        items: [
-          { _key: 'f1', question: 'What is included in the ticket?', answer: [{ _type: 'block', _key: 'a1', style: 'normal', children: [{ _type: 'span', _key: 's1', text: 'Your ticket includes access to all keynotes, panels, lightning talks, lunch, coffee breaks, the exhibition area, and the afterparty.' }] }] },
-          { _key: 'f2', question: 'Can I get a refund?', answer: [{ _type: 'block', _key: 'a2', style: 'normal', children: [{ _type: 'span', _key: 's2', text: 'Tickets can be refunded up to 14 days before the event. After that, you can transfer your ticket to another person.' }] }] },
-          { _key: 'f3', question: 'Are there group discounts?', answer: [{ _type: 'block', _key: 'a3', style: 'normal', children: [{ _type: 'span', _key: 's3', text: 'Yes! Groups of 5+ get 15% off. Contact us at hello@odanettverk.no for group bookings.' }] }] },
-          { _key: 'f4', question: 'Is the venue accessible?', answer: [{ _type: 'block', _key: 'a4', style: 'normal', children: [{ _type: 'span', _key: 's4', text: 'Yes, Oslo Spektrum is fully wheelchair accessible with elevator access to all floors, accessible restrooms, and hearing loop systems.' }] }] },
+        _type: 'ctaSection',
+        _key: 'ctaDigital',
+        heading: 'Join Us Digitally',
+        body: 'If you are unable to attend ODA Inspiration Day physically, we offer online tickets to follow the streaming of the conference. Attending digitally is free and open for everyone. Registration opens 29th April.',
+        backgroundColor: 'dark-blue',
+        cta: { _type: 'link', label: 'Register for Streaming', href: 'https://odanettverk.no/streaming', isExternal: true },
+      },
+      // Block 6: Cancellation
+      {
+        _type: 'ctaSection',
+        _key: 'ctaCancel',
+        heading: "Can't Attend? Here's How to Cancel",
+        body: 'Can\'t make it to ODA Inspiration Day? To cancel your physical ticket, please send an e-mail to inspirationday@odanettverk.no.',
+        backgroundColor: 'mint',
+        cta: { _type: 'link', label: 'Send Cancellation Email', href: 'mailto:inspirationday@odanettverk.no', isExternal: true },
+      },
+      // Block 7: Event participation policy
+      {
+        _type: 'richText',
+        _key: 'policy1',
+        heading: 'Event Participation Policy',
+        narrowWidth: true,
+        backgroundColor: 'cream',
+        content: [
+          {
+            _type: 'block', _key: 'p1', style: 'normal', listItem: 'bullet', level: 1,
+            children: [{ _type: 'span', _key: 'ps1', text: 'By registering for this event, you agree that ODA Network reserves the right to use photos and video material captured during the event for marketing and communication purposes.' }],
+          },
+          {
+            _type: 'block', _key: 'p2', style: 'normal', listItem: 'bullet', level: 1,
+            children: [{ _type: 'span', _key: 'ps2', text: 'Cancellations after May 23rd will incur a cancellation fee of NOK 300.' }],
+          },
+          {
+            _type: 'block', _key: 'p3', style: 'normal', listItem: 'bullet', level: 1,
+            children: [{ _type: 'span', _key: 'ps3', text: 'Please note that ODA Network operates with a no-show fee of NOK 500.' }],
+          },
         ],
       },
     ],
