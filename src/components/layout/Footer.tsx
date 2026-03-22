@@ -37,6 +37,13 @@ export function Footer({ footerNavigation, socialLinks, contactEmail }: FooterPr
               height={40}
               className="h-32 w-auto mb-6 brightness-0 invert"
             />
+            <Image
+              src="/logos/oda-nettverk-white.svg"
+              alt="ODA Nettverk"
+              width={120}
+              height={30}
+              className="h-8 w-auto"
+            />
           </div>
 
           <div>

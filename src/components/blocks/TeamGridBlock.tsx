@@ -33,26 +33,7 @@ export async function TeamGridBlock({ block }: { block: TeamGridBlockType }) {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
           {members.map((member, i) => (
             <AnimatedSection key={member._id} delay={i * 0.05} animation="fadeUp">
-              <div className="group text-center">
-                <div className="relative aspect-square overflow-hidden rounded-2xl mb-4 shadow-sm group-hover:shadow-xl transition-shadow duration-300">
-                  {member.photo ? (
-                    <SanityImage
-                      image={member.photo}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-lavender flex items-center justify-center">
-                      <span className="text-3xl font-black text-dark-blue/30">
-                        {member.name.charAt(0)}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <h3 className="font-bold text-dark-blue text-lg">{member.name}</h3>
-                {member.role && <p className="text-sm text-very-dark/60">{member.role}</p>}
-              </div>
+              <TeamCard member={member} />
             </AnimatedSection>
           ))}
         </div>
@@ -65,4 +46,40 @@ export async function TeamGridBlock({ block }: { block: TeamGridBlockType }) {
       </Container>
     </SectionWrapper>
   )
+}
+
+function TeamCard({ member }: { member: TeamMember }) {
+  const content = (
+    <div className="group text-center">
+      <div className="relative aspect-square overflow-hidden rounded-2xl mb-4 shadow-sm group-hover:shadow-xl transition-shadow duration-300">
+        {member.photo ? (
+          <SanityImage
+            image={member.photo}
+            alt={member.name}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full bg-lavender flex items-center justify-center">
+            <span className="text-3xl font-black text-dark-blue/30">
+              {member.name.charAt(0)}
+            </span>
+          </div>
+        )}
+      </div>
+      <h3 className="font-bold text-dark-blue text-lg">{member.name}</h3>
+      {member.role && <p className="text-sm text-very-dark/60">{member.role}</p>}
+    </div>
+  )
+
+  if (member.linkedin) {
+    return (
+      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} on LinkedIn`}>
+        {content}
+      </a>
+    )
+  }
+
+  return content
 }

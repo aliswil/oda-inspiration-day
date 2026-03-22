@@ -62,7 +62,7 @@ export type SpeakerGridBlock = {
 export type ScheduleSession = {
   _key: string; time?: string; title: string; description?: string;
   speaker?: Pick<Speaker, 'name' | 'role' | 'company' | 'photo'>;
-  tag?: 'keynote' | 'lightning' | 'panel' | 'workshop' | 'break' | 'networking';
+  tag?: string;
   location?: string
 }
 

@@ -16,7 +16,7 @@ export default defineType({
           defineField({ name: 'title', title: 'Title', type: 'string', validation: (r) => r.required() }),
           defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
           defineField({ name: 'speaker', title: 'Speaker', type: 'reference', to: [{ type: 'speaker' }] }),
-          defineField({ name: 'tag', title: 'Tag', type: 'string', options: { list: ['keynote', 'lightning', 'panel', 'workshop', 'break', 'networking'] } }),
+          defineField({ name: 'tag', title: 'Tag', type: 'string', description: 'e.g. keynote, lightning, panel, workshop, break, networking' }),
           defineField({ name: 'location', title: 'Location / Room', type: 'string' }),
         ],
         preview: { select: { title: 'title', time: 'time', tag: 'tag' }, prepare({ title, time, tag }) { return { title: `${time || ''} ${title}`, subtitle: tag } } },
