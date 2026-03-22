@@ -8,15 +8,15 @@ const speakerFields = `
 const visibleFilter = 'visible != false'
 
 export const allSpeakersQuery = groq`
-  *[_type == "speaker" && ${visibleFilter}] | order(name asc) { ${speakerFields} }
+  *[_type == "speaker" && ${visibleFilter}] | order(coalesce(order, 999) asc, name asc) { ${speakerFields} }
 `
 
 export const keynoteSpeakersQuery = groq`
-  *[_type == "speaker" && isLightningTalk != true && ${visibleFilter}] | order(name asc) { ${speakerFields} }
+  *[_type == "speaker" && isLightningTalk != true && ${visibleFilter}] | order(coalesce(order, 999) asc, name asc) { ${speakerFields} }
 `
 
 export const lightningSpeakersQuery = groq`
-  *[_type == "speaker" && isLightningTalk == true && ${visibleFilter}] | order(name asc) { ${speakerFields} }
+  *[_type == "speaker" && isLightningTalk == true && ${visibleFilter}] | order(coalesce(order, 999) asc, name asc) { ${speakerFields} }
 `
 
 export const speakerBySlugQuery = groq`

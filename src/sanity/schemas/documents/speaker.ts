@@ -6,6 +6,7 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({ name: 'visible', title: 'Visible on site', type: 'boolean', initialValue: true }),
+    defineField({ name: 'order', title: 'Sort Order', type: 'number', description: 'Lower numbers appear first' }),
     defineField({ name: 'name', title: 'Name', type: 'string', validation: (r) => r.required() }),
     defineField({
       name: 'slug',
