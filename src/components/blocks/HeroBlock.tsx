@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
@@ -45,7 +46,19 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
 
   return (
     <section className={cn('relative flex items-center justify-center overflow-hidden -mt-16 md:-mt-20', height)}>
-      {block.backgroundImage && (
+      {/* Mobile: show background image (or fallback); Desktop: show video if available */}
+      {block.backgroundVideo && (
+        <div className="absolute inset-0 md:hidden">
+          {block.backgroundImage ? (
+            <SanityImage image={block.backgroundImage} fill priority sizes="100vw" className="object-cover" />
+          ) : (
+            <Image src="/images/hero-mobile-bg.jpg" alt="" fill priority sizes="100vw" quality={90} className="object-cover" />
+          )}
+          <div className="absolute inset-0 bg-very-dark/50" />
+        </div>
+      )}
+
+      {block.backgroundImage && !block.backgroundVideo && (
         <div className="absolute inset-0">
           <SanityImage image={block.backgroundImage} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-very-dark/50" />
@@ -53,7 +66,7 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
       )}
 
       {block.backgroundVideo && (
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 hidden md:block">
           {ytId ? (
             <iframe
               src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&playlist=${ytId}`}
@@ -85,7 +98,24 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
         {block.style === 'fullscreen' && block.backgroundVideo ? (
           <>
             <h1 className="sr-only">ODA Inspiration Day</h1>
-            <HeroLogoAnimation />
+            <div className="hidden md:block">
+              <HeroLogoAnimation />
+            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="md:hidden"
+            >
+              <Image
+                src="/logos/oda-id-logo-alt1.svg"
+                alt="ODA Inspiration Day"
+                width={400}
+                height={100}
+                className="mx-auto w-full max-w-xs brightness-0 invert"
+                priority
+              />
+            </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

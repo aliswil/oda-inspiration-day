@@ -5,7 +5,7 @@ import type { Speaker } from '@/sanity/types'
 
 export function SpeakerHero({ speaker }: { speaker: Speaker }) {
   return (
-    <section className="relative text-cream overflow-hidden pt-32 pb-32 md:pb-44 min-h-[70vh]">
+    <section className="relative text-cream overflow-hidden pt-32 pb-20 md:pb-28 min-h-[60vh]">
       {/* B&W background image */}
       <Image
         src="/images/speaker-hero-bg.jpg"
