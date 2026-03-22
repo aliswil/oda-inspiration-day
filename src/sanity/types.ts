@@ -50,7 +50,8 @@ export type HeroBlock = {
 
 export type RichTextBlock = {
   _type: 'richText'; _key: string; heading?: string;
-  content?: PortableTextBlock[]; backgroundColor?: string; narrowWidth?: boolean
+  content?: PortableTextBlock[]; backgroundColor?: string; narrowWidth?: boolean;
+  padding?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
 export type SpeakerGridBlock = {

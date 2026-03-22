@@ -6,7 +6,7 @@ import type { RichTextBlock as RichTextBlockType } from '@/sanity/types'
 
 export function RichTextBlock({ block }: { block: RichTextBlockType }) {
   return (
-    <SectionWrapper backgroundColor={block.backgroundColor}>
+    <SectionWrapper backgroundColor={block.backgroundColor} padding={block.padding}>
       <Container narrow={block.narrowWidth}>
         <AnimatedSection>
           {block.heading && (

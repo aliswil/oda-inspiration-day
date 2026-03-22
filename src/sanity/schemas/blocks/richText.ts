@@ -16,6 +16,7 @@ export default defineType({
     }),
     defineField({ name: 'backgroundColor', title: 'Background Color', type: 'string', options: { list: ['cream', 'lavender', 'dark-blue', 'white', 'mint'] }, initialValue: 'cream' }),
     defineField({ name: 'narrowWidth', title: 'Narrow Width?', type: 'boolean', initialValue: false }),
+    defineField({ name: 'padding', title: 'Padding', type: 'string', options: { list: ['sm', 'md', 'lg', 'xl'] }, initialValue: 'lg' }),
   ],
   preview: { select: { title: 'heading' }, prepare({ title }) { return { title: title || 'Rich Text Block' } } },
 })
