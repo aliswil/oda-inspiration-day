@@ -4,7 +4,7 @@ import { MotionProvider } from '@/components/ui/MotionProvider'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { siteSettingsQuery } from '@/sanity/queries'
 import { NAV_ITEMS, type NavItem } from '@/lib/constants'
-import type { SanityLink, SocialLink } from '@/sanity/types'
+import type { SanityLink, SiteSettings, SocialLink } from '@/sanity/types'
 
 export default async function SiteLayout({
   children,
@@ -18,7 +18,7 @@ export default async function SiteLayout({
   let contactEmail = ''
 
   try {
-    const settings = await sanityFetch<Record<string, unknown>>({
+    const settings = await sanityFetch<SiteSettings>({
       query: siteSettingsQuery,
       tags: ['sanity', 'siteSettings'],
     })

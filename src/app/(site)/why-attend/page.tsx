@@ -4,6 +4,7 @@ import { whyAttendPageQuery } from '@/sanity/queries'
 import { generatePageMetadata } from '@/lib/metadata'
 import { urlFor } from '@/sanity/image'
 import { WhyAttendContent, type WhyAttendData } from '@/components/why-attend/WhyAttendContent'
+import type { PortableTextBlock } from '@portabletext/types'
 import type { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -23,7 +24,7 @@ type SanityBlock = {
   backgroundImage?: { asset: { _ref: string } }
   backgroundColor?: string
   stats?: { value: number; suffix: string; label: string }[]
-  cards?: { title: string; description: unknown[]; accentColor: string }[]
+  cards?: { title: string; description: PortableTextBlock[]; accentColor: string }[]
   cta?: { label: string; href: string; isExternal?: boolean }
   secondaryCta?: { label: string; href: string; isExternal?: boolean }
   emailSubject?: string

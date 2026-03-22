@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
 import { AnimatedCounter, ReasonCard, ManagerBox, accentMap } from './WhyAttendSubcomponents'
 import { WhyAttendHero } from './WhyAttendHero'
+import type { PortableTextBlock } from '@portabletext/types'
 
 export type WhyAttendData = {
   heroHeading: string
@@ -13,7 +14,7 @@ export type WhyAttendData = {
   heroImageUrl: string | null
   stats: { value: number; suffix: string; label: string }[]
   reasonsHeading: string
-  reasons: { title: string; description: unknown[]; accentColor: string }[]
+  reasons: { title: string; description: PortableTextBlock[]; accentColor: string }[]
   managerLabel: string
   managerHeading: string
   managerBody: string
