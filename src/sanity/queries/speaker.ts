@@ -5,22 +5,24 @@ const speakerFields = `
   secondaryPhoto, bio, presentationDescription, isLightningTalk, topic, videoUrl, linkedin
 `
 
+const visibleFilter = 'visible != false'
+
 export const allSpeakersQuery = groq`
-  *[_type == "speaker"] | order(name asc) { ${speakerFields} }
+  *[_type == "speaker" && ${visibleFilter}] | order(name asc) { ${speakerFields} }
 `
 
 export const keynoteSpeakersQuery = groq`
-  *[_type == "speaker" && isLightningTalk != true] | order(name asc) { ${speakerFields} }
+  *[_type == "speaker" && isLightningTalk != true && ${visibleFilter}] | order(name asc) { ${speakerFields} }
 `
 
 export const lightningSpeakersQuery = groq`
-  *[_type == "speaker" && isLightningTalk == true] | order(name asc) { ${speakerFields} }
+  *[_type == "speaker" && isLightningTalk == true && ${visibleFilter}] | order(name asc) { ${speakerFields} }
 `
 
 export const speakerBySlugQuery = groq`
-  *[_type == "speaker" && slug.current == $slug][0] { ${speakerFields} }
+  *[_type == "speaker" && slug.current == $slug && ${visibleFilter}][0] { ${speakerFields} }
 `
 
 export const allSpeakerSlugsQuery = groq`
-  *[_type == "speaker" && defined(slug.current)].slug.current
+  *[_type == "speaker" && defined(slug.current) && ${visibleFilter}].slug.current
 `

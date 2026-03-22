@@ -5,6 +5,7 @@ export default defineType({
   title: 'Speaker',
   type: 'document',
   fields: [
+    defineField({ name: 'visible', title: 'Visible on site', type: 'boolean', initialValue: true }),
     defineField({ name: 'name', title: 'Name', type: 'string', validation: (r) => r.required() }),
     defineField({
       name: 'slug',
