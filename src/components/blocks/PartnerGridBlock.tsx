@@ -7,20 +7,17 @@ import { allSponsorsQuery } from '@/sanity/queries'
 import type { PartnerGridBlock as PartnerGridBlockType, Sponsor } from '@/sanity/types'
 
 function SponsorItem({ sponsor, size }: { sponsor: Sponsor; size: 'lg' | 'sm' }) {
-  const logoClass = size === 'lg' ? 'h-12 md:h-16' : 'h-8 md:h-10'
-  const boxClass = size === 'lg'
-    ? 'w-40 h-24 md:w-52 md:h-32'
-    : 'w-32 h-20 md:w-40 md:h-24'
+  const logoClass = size === 'lg' ? 'h-12 md:h-20' : 'h-8 md:h-10'
   const textClass = size === 'lg' ? 'text-xl md:text-2xl' : 'text-base md:text-lg'
 
   const content = (
-    <div className={`${boxClass} flex items-center justify-center p-4 rounded-xl bg-white/60 border border-black/5`}>
+    <div className="flex items-center justify-center p-4">
       {sponsor.logo ? (
         <SanityImage
           image={sponsor.logo}
           alt={sponsor.name}
-          height={64}
-          width={200}
+          height={size === 'lg' ? 96 : 64}
+          width={size === 'lg' ? 300 : 200}
           className={`${logoClass} w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300`}
         />
       ) : (
