@@ -43,14 +43,15 @@ export function SpeakerBio({ speaker }: { speaker: Speaker }) {
           {speaker.presentationDescription && (
             <div className="relative order-first md:order-last space-y-8">
               {speaker.portraitCutout && (
-                <div className="absolute bottom-full left-0 right-0 mb-[-4rem] pointer-events-none">
+                <div className="absolute bottom-full left-[10%] right-[10%] mb-[-4rem] pointer-events-none">
                   <SanityImage
                     image={speaker.portraitCutout}
                     alt={speaker.name}
-                    width={800}
-                    height={1000}
+                    width={1200}
+                    height={1500}
                     priority
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 80vw, 40vw"
+                    quality={95}
                     className="w-full h-auto"
                   />
                 </div>

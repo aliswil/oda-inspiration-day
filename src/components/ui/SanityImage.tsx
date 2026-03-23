@@ -12,6 +12,7 @@ type SanityImageProps = {
   priority?: boolean
   className?: string
   sizes?: string
+  quality?: number
 }
 
 export function SanityImage({
@@ -23,12 +24,13 @@ export function SanityImage({
   priority = false,
   className,
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  quality = 85,
 }: SanityImageProps) {
   if (!image?.asset) return null
 
   const imageUrl = urlFor(image)
     .auto('format')
-    .quality(85)
+    .quality(quality)
 
   if (fill) {
     return (
