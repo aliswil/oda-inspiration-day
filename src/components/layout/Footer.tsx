@@ -10,7 +10,7 @@ const SOCIAL_ICONS: Record<string, string> = {
 }
 
 const DEFAULT_SOCIALS: SocialLink[] = [
-  { platform: 'LinkedIn', url: 'https://www.linkedin.com/company/oda-nettverk/' },
+  { platform: 'LinkedIn', url: 'https://www.linkedin.com/company/oda---women-in-tech-network/' },
   { platform: 'Instagram', url: 'https://www.instagram.com/odanettverk/' },
 ]
 
