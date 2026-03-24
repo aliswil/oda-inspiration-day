@@ -22,10 +22,11 @@ import faqAccordion from './blocks/faqAccordion'
 import quote from './blocks/quote'
 import venueMap from './blocks/venueMap'
 import videoCarousel from './blocks/videoCarousel'
+import themeTeaser from './blocks/themeTeaser'
 
 export const schemaTypes = [
   seo, link, navItem, socialLink,
   page, speaker, teamMember, sponsor, siteSettings,
   hero, richText, speakerGrid, schedule, imageGallery, videoEmbed,
-  ctaSection, statsCounter, teamGrid, partnerGrid, cardGrid, faqAccordion, quote, venueMap, videoCarousel,
+  ctaSection, statsCounter, teamGrid, partnerGrid, cardGrid, faqAccordion, quote, venueMap, videoCarousel, themeTeaser,
 ]

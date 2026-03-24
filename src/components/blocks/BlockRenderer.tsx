@@ -14,6 +14,7 @@ import { FaqAccordionBlock } from './FaqAccordionBlock'
 import { QuoteBlock } from './QuoteBlock'
 import { VenueMapBlock } from './VenueMapBlock'
 import { VideoCarouselBlock } from './VideoCarouselBlock'
+import { ThemeTeaserBlock } from './ThemeTeaserBlock'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const blockComponents: Record<string, React.ComponentType<{ block: any }>> = {
@@ -32,6 +33,7 @@ const blockComponents: Record<string, React.ComponentType<{ block: any }>> = {
   quote: QuoteBlock,
   venueMap: VenueMapBlock,
   videoCarousel: VideoCarouselBlock,
+  themeTeaser: ThemeTeaserBlock,
 }
 
 type BlockRendererProps = {

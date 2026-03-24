@@ -17,7 +17,7 @@ export default defineType({
         { type: 'hero' }, { type: 'richText' }, { type: 'speakerGrid' }, { type: 'schedule' },
         { type: 'imageGallery' }, { type: 'videoEmbed' }, { type: 'ctaSection' }, { type: 'statsCounter' },
         { type: 'teamGrid' }, { type: 'partnerGrid' }, { type: 'cardGrid' }, { type: 'faqAccordion' },
-        { type: 'quote' }, { type: 'venueMap' }, { type: 'videoCarousel' },
+        { type: 'quote' }, { type: 'venueMap' }, { type: 'videoCarousel' }, { type: 'themeTeaser' },
       ],
     }),
   ],

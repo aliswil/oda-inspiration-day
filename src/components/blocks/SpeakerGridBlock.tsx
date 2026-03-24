@@ -90,10 +90,9 @@ function SpeakerCard({ speaker, flipped }: { speaker: Speaker; flipped: boolean 
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-very-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
-      <h3 className="font-bold text-lg text-dark-blue">{speaker.name}</h3>
-      {speaker.role && <p className="text-sm text-very-dark/60">{speaker.role}</p>}
-      {speaker.company && <p className="text-sm font-medium text-red">{speaker.company}</p>}
-      {speaker.topic && <p className="text-sm text-very-dark/50 mt-1 italic">{speaker.topic}</p>}
+      <h3 className="font-bold text-xl md:text-2xl text-dark-blue">{speaker.name}</h3>
+      {speaker.role && <p className="text-base text-very-dark/70">{speaker.role}</p>}
+      {speaker.company && <p className="text-base font-medium text-red">{speaker.company}</p>}
     </div>
   )
 
