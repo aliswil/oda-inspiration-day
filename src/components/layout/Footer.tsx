@@ -37,13 +37,6 @@ export function Footer({ footerNavigation, socialLinks, contactEmail }: FooterPr
               height={40}
               className="h-32 w-auto mb-6 brightness-0 invert"
             />
-            <Image
-              src="/logos/oda-nettverk-white.svg"
-              alt="ODA Nettverk"
-              width={120}
-              height={30}
-              className="h-8 w-auto"
-            />
           </div>
 
           <div>
@@ -88,12 +81,19 @@ export function Footer({ footerNavigation, socialLinks, contactEmail }: FooterPr
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <Image
+            src="/logos/oda-nettverk-white.svg"
+            alt="ODA Nettverk"
+            width={80}
+            height={20}
+            className="h-12 w-auto"
+          />
           <p className="text-white/40 text-sm">
             &copy; {new Date().getFullYear()} ODA-Nettverk. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-white/40 hover:text-white text-sm transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-white/40 hover:text-white text-sm transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="text-white/40 hover:text-white text-sm transition-colors">Privacy Policy</Link>
+            <Link href="/code-of-conduct" className="text-white/40 hover:text-white text-sm transition-colors">Code of Conduct</Link>
           </div>
         </div>
       </Container>

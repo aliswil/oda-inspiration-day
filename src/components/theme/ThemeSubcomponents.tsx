@@ -33,33 +33,6 @@ export function GlitchTitle({ title }: { title: string }) {
   )
 }
 
-/* ─── MarqueeRow ─── */
-
-export function MarqueeRow({ phrases, direction, speed, accent }: ThemeData['marqueeRows'][number]) {
-  const items = [...phrases, ...phrases]
-  const animClass = direction === 'left' ? 'marquee-left' : 'marquee-right'
-
-  return (
-    <div className="overflow-hidden py-4 md:py-6">
-      <div
-        className={`flex whitespace-nowrap gap-8 md:gap-16 ${animClass}`}
-        style={{ animationDuration: `${speed}s` }}
-      >
-        {items.map((phrase, i) => {
-          const [before, after] = phrase.split(' — ')
-          return (
-            <span key={i} className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black uppercase tracking-tight shrink-0">
-              <span className="text-white/30">{before}</span>
-              <span className={`${accent} mx-3`}>&mdash;</span>
-              <span className="text-white">{after}</span>
-            </span>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-
 /* ─── AnimatedCounter ─── */
 
 export function AnimatedCounter({ value, suffix, label }: { value: number; suffix: string; label: string }) {

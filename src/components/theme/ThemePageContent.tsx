@@ -3,9 +3,10 @@
 import { motion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import {
-  MarqueeRow, AnimatedCounter,
+  AnimatedCounter,
   ParadoxCard, accentBgMap,
 } from './ThemeSubcomponents'
+import { ParadoxPulse } from './ParadoxPulse'
 import { ManifestoContent } from './ManifestoContent'
 import { ThemeHero } from './ThemeHero'
 import { ThemeCta } from './ThemeCta'
@@ -23,7 +24,7 @@ export type ThemeData = {
   heroSubtitle: string
   showHero: boolean
   marqueeHeading: string
-  marqueeRows: { phrases: string[]; direction: 'left' | 'right'; speed: number; accent: string }[]
+  marqueeSentences: string[]
   showMarquee: boolean
   manifestoBlocks: ManifestoBlock[]
   showManifesto: boolean
@@ -45,30 +46,17 @@ export function ThemePageContent({ data }: { data: ThemeData }) {
       {data.showHero && <ThemeHero title={data.heroTitle} subtitle={data.heroSubtitle} />}
 
       {data.showMarquee && (
-        <section className="bg-very-dark py-16 md:py-24">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="text-white/40 text-sm uppercase tracking-[0.3em] text-center mb-10 font-bold"
-          >
-            {data.marqueeHeading}
-          </motion.h2>
-          <div aria-hidden="true">
-            {data.marqueeRows.map((row, i) => (
-              <MarqueeRow key={i} {...row} />
-            ))}
-          </div>
-        </section>
+        <ParadoxPulse heading={data.marqueeHeading} sentences={data.marqueeSentences} />
       )}
 
       {data.showManifesto && (
-        <section className="relative py-24 md:py-32 overflow-hidden">
+        <section className="relative pt-0 pb-24 md:pb-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-very-dark via-dark-blue to-very-dark" />
-          <div className="absolute inset-0 opacity-[0.03] noise-bg" aria-hidden="true" />
+          <div className="absolute inset-0 opacity-[0.15] noise-bg" aria-hidden="true" />
+          {/* Smooth fade from previous section */}
+          <div className="h-24 md:h-32 bg-gradient-to-b from-very-dark to-transparent relative z-10" />
           <Container className="relative z-10">
-            <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-4xl mx-auto space-y-12 md:space-y-16">
               <ManifestoContent blocks={data.manifestoBlocks} />
             </div>
           </Container>

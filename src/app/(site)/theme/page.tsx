@@ -29,12 +29,6 @@ type SanityBlock = {
   secondaryCta?: { label: string; href: string }
 }
 
-const ROW_CONFIG = [
-  { direction: 'left' as const, speed: 35, accent: 'text-red' },
-  { direction: 'right' as const, speed: 28, accent: 'text-lavender' },
-  { direction: 'left' as const, speed: 32, accent: 'text-mint' },
-]
-
 function extractPlainText(content?: SanityBlock['content']): string[] {
   return (content || [])
     .filter((block) => !block.listItem)
@@ -54,7 +48,7 @@ function extractManifestoBlocks(content?: SanityBlock['content']): ManifestoBloc
       const text = block.children?.map((c) => c.text || '').join('') || ''
       if (!text) return null
       if (block.listItem) {
-        return { type: block.listItem as 'bullet' | 'number', text }
+        return { type: block.listItem as 'bullet' | 'number', style: block.style, text }
       }
       return { type: 'paragraph' as const, style: block.style, text }
     })
@@ -71,19 +65,14 @@ function mapSanityToThemeData(blocks: SanityBlock[]): ThemeData {
   const cards = enabled.find((b) => b._type === 'cardGrid')
   const cta = enabled.find((b) => b._type === 'ctaSection')
 
-  // Split marquee phrases into groups of 3 for the 3 rows
-  const allPhrases = extractPlainText(marquee?.content)
-  const marqueeRows = ROW_CONFIG.map((config, i) => ({
-    ...config,
-    phrases: allPhrases.slice(i * 3, i * 3 + 3),
-  })).filter((row) => row.phrases.length > 0)
+  const marqueeSentences = extractPlainText(marquee?.content)
 
   return {
     heroTitle: hero?.heading || 'DIGITAL PARADOX',
     heroSubtitle: hero?.subheading || '',
     showHero: !!hero,
     marqueeHeading: marquee?.heading || 'The paradoxes we live in',
-    marqueeRows,
+    marqueeSentences,
     showMarquee: !!marquee,
     manifestoBlocks: extractManifestoBlocks(manifesto?.content),
     showManifesto: !!manifesto,
