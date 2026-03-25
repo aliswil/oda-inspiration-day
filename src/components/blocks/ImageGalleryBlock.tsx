@@ -48,14 +48,27 @@ export function ImageGalleryBlock({ block }: { block: ImageGalleryBlockType }) {
           <div className={cn('grid gap-4', colsMap[cols])}>
             {block.images?.map((image, i) => (
               <AnimatedSection key={i} delay={i * 0.1} animation="scaleIn">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl group">
-                  <SanityImage
-                    image={image}
-                    fill
-                    sizes={`(max-width: 640px) 100vw, (max-width: 1024px) 50vw, ${Math.floor(100 / cols)}vw`}
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+                {cols === 1 ? (
+                  <div className="overflow-hidden rounded-2xl">
+                    <SanityImage
+                      image={image}
+                      alt={image.alt || ''}
+                      width={1200}
+                      height={800}
+                      sizes="100vw"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                ) : (
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl group">
+                    <SanityImage
+                      image={image}
+                      fill
+                      sizes={`(max-width: 640px) 100vw, (max-width: 1024px) 50vw, ${Math.floor(100 / cols)}vw`}
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
                 {image.caption && (
                   <p className="text-sm text-very-dark/60 mt-2 px-1">{image.caption}</p>
                 )}
