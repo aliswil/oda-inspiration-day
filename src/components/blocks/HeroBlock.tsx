@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { SanityImage } from '@/components/ui/SanityImage'
 import { BlobDecoration } from '@/components/ui/BlobDecoration'
 import { HeroLogoAnimation } from '@/components/ui/HeroLogoAnimation'
+import { EVENT_DATE } from '@/lib/constants'
 import type { HeroBlock as HeroBlockType } from '@/sanity/types'
 
 const heightMap = { fullscreen: 'min-h-screen', tall: 'min-h-[80vh]', medium: 'min-h-[60vh]' }
@@ -116,11 +117,19 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
                 priority
               />
             </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-white text-lg md:text-2xl font-medium mt-8 md:mt-12 tracking-wide"
+            >
+              {EVENT_DATE}
+            </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
-              className="flex flex-wrap gap-4 justify-center mt-32"
+              className="flex flex-wrap gap-4 justify-center mt-10"
             >
               <HeroCtas cta={block.cta} secondaryCta={block.secondaryCta} />
             </motion.div>
@@ -142,9 +151,19 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg md:text-xl lg:text-2xl text-white/80 max-w-3xl mx-auto mb-10"
+                className="text-lg md:text-xl lg:text-2xl text-white/80 max-w-3xl mx-auto mb-4"
               >
                 {block.subheading}
+              </motion.p>
+            )}
+            {block.style === 'medium' && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-base md:text-lg text-white font-medium tracking-wide mb-10"
+              >
+                {EVENT_DATE}
               </motion.p>
             )}
             <motion.div

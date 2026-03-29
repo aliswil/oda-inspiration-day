@@ -8,8 +8,8 @@ import type { PartnerGridBlock as PartnerGridBlockType, Sponsor } from '@/sanity
 
 function SponsorItem({ sponsor, size }: { sponsor: Sponsor; size: 'lg' | 'sm' }) {
   const logoClass = size === 'lg'
-    ? 'h-14 md:h-24 max-w-[12rem] md:max-w-[16rem]'
-    : 'h-8 md:h-10 max-w-[7rem] md:max-w-[10rem]'
+    ? 'h-12 md:h-20 max-w-[10rem] md:max-w-[16rem]'
+    : 'h-8 md:h-10 max-w-[6rem] md:max-w-[9rem]'
   const textClass = size === 'lg' ? 'text-xl md:text-2xl' : 'text-base md:text-lg'
 
   const content = (
