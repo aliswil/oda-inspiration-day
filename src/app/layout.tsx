@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 import { nunitoSans } from '@/lib/fonts'
 import { SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants'
 import './globals.css'
@@ -42,6 +43,7 @@ export default function RootLayout({
     <html lang="en" className={nunitoSans.variable}>
       <body className="font-sans antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   )
