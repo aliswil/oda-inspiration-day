@@ -4,7 +4,13 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Button } from '@/components/ui/Button'
 import { SanityImage } from '@/components/ui/SanityImage'
 import { BlobDecoration } from '@/components/ui/BlobDecoration'
+import { cn } from '@/lib/utils'
 import type { CtaSectionBlock as CtaSectionBlockType } from '@/sanity/types'
+
+// When an editor sets a CTA's URL to "#" in Sanity, treat it as a placeholder
+// and render a visible-but-inert button. Updating the URL in Studio flips it
+// to a normal interactive button automatically.
+const isPlaceholderHref = (href?: string) => !href || href === '#'
 
 export function CtaSectionBlock({ block }: { block: CtaSectionBlockType }) {
   return (
@@ -42,15 +48,33 @@ export function CtaSectionBlock({ block }: { block: CtaSectionBlockType }) {
                 </Button>
               )}
               {block.secondaryCta && (
-                <Button
-                  href={block.secondaryCta.href}
-                  isExternal={block.secondaryCta.isExternal}
-                  size="lg"
-                  variant="outline"
-                  className={block.backgroundColor === 'red' || block.backgroundColor === 'dark-blue' ? 'border-white text-white hover:bg-white hover:text-dark-blue' : ''}
-                >
-                  {block.secondaryCta.label}
-                </Button>
+                isPlaceholderHref(block.secondaryCta.href) ? (
+                  <button
+                    type="button"
+                    disabled
+                    aria-label={`${block.secondaryCta.label} — not yet available`}
+                    title="Not yet available"
+                    className={cn(
+                      'inline-flex items-center justify-center rounded-full font-bold tracking-wide uppercase px-10 py-4.5 text-lg border-2 border-dashed',
+                      'opacity-50 cursor-not-allowed pointer-events-none select-none',
+                      block.backgroundColor === 'red' || block.backgroundColor === 'dark-blue'
+                        ? 'border-white/50 text-white/70'
+                        : 'border-dark-blue/40 text-dark-blue/60 bg-white/30',
+                    )}
+                  >
+                    {block.secondaryCta.label}
+                  </button>
+                ) : (
+                  <Button
+                    href={block.secondaryCta.href}
+                    isExternal={block.secondaryCta.isExternal}
+                    size="lg"
+                    variant="outline"
+                    className={block.backgroundColor === 'red' || block.backgroundColor === 'dark-blue' ? 'border-white text-white hover:bg-white hover:text-dark-blue' : ''}
+                  >
+                    {block.secondaryCta.label}
+                  </Button>
+                )
               )}
             </div>
           </div>

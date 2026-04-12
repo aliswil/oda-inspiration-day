@@ -10,7 +10,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   }, [])
 
   return (
-    <div className={mounted ? 'animate-fade-up' : ''}>
+    <div className={mounted ? 'animate-fade-in' : 'opacity-0'}>
       {children}
     </div>
   )
