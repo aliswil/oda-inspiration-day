@@ -39,6 +39,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: '/team',
     children: [
       { label: 'Team', href: '/team' },
+      { label: 'Food', href: '/food' },
     ],
   },
 ]
