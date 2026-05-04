@@ -161,8 +161,18 @@ export type VideoCarouselBlock = {
   videos?: VideoCarouselItem[]; backgroundColor?: string
 }
 
+export type PersonSpotlightBlock = {
+  _type: 'personSpotlight'; _key: string;
+  enabled?: boolean;
+  label?: string; heading?: string;
+  name: string; role?: string; company?: string;
+  bio?: string; image: SanityImage;
+  imagePosition?: 'left' | 'right';
+  backgroundColor?: 'cream' | 'lavender' | 'white' | 'mint' | 'dark-blue'
+}
+
 export type Block =
   | HeroBlock | RichTextBlock | SpeakerGridBlock | ScheduleBlock
   | ImageGalleryBlock | VideoEmbedBlock | CtaSectionBlock | StatsCounterBlock
   | TeamGridBlock | PartnerGridBlock | CardGridBlock | FaqAccordionBlock
-  | QuoteBlock | VenueMapBlock | VideoCarouselBlock
+  | QuoteBlock | VenueMapBlock | VideoCarouselBlock | PersonSpotlightBlock
