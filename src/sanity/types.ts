@@ -21,8 +21,23 @@ export type Speaker = {
   _id: string; name: string; slug?: string; role?: string; company?: string;
   photo?: SanityImage; portraitCutout?: SanityImage; secondaryPhoto?: SanityImage;
   bio?: string; presentationDescription?: string; isLightningTalk?: boolean;
-  topic?: string; videoUrl?: string; linkedin?: string
+  topic?: string; videoUrl?: string; linkedin?: string;
+  sessions?: SpeakerSessionRef[]
 }
+
+export type SpeakerSessionRef = {
+  _key: string; time?: string; title: string;
+  format?: { title: string; color: ProgramFormatColor }
+}
+
+export type ProgramFormatColor = 'red' | 'dark-blue' | 'mint' | 'lavender' | 'cream'
+
+export type ProgramFormat = {
+  title: string; slug: string; color: ProgramFormatColor;
+  isBreak?: boolean; isSideEvent?: boolean
+}
+
+export type ProgramTopic = { _id: string; title: string; slug: string; order?: number }
 
 export type TeamMember = { _id: string; name: string; role?: string; photo?: SanityImage; linkedin?: string }
 
@@ -61,14 +76,17 @@ export type SpeakerGridBlock = {
 }
 
 export type ScheduleSession = {
-  _key: string; time?: string; title: string; description?: string;
-  speaker?: Pick<Speaker, 'name' | 'role' | 'company' | 'photo'>;
-  tag?: string;
-  location?: string
+  _key: string; time: string; title: string; description?: string;
+  format?: ProgramFormat;
+  speakers?: Pick<Speaker, '_id' | 'name' | 'role' | 'company' | 'slug' | 'photo'>[];
+  topics?: ProgramTopic[];
+  location?: string;
+  linkUrl?: string; linkLabel?: string
 }
 
 export type ScheduleBlock = {
   _type: 'schedule'; _key: string; heading?: string;
+  outcomesIntro?: string;
   sessions?: ScheduleSession[]; backgroundColor?: string
 }
 

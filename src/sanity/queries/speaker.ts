@@ -2,7 +2,13 @@ import { groq } from 'next-sanity'
 
 const speakerFields = `
   _id, name, "slug": slug.current, role, company, photo, portraitCutout,
-  secondaryPhoto, bio, presentationDescription, isLightningTalk, topic, videoUrl, linkedin
+  secondaryPhoto, bio, presentationDescription, isLightningTalk, topic, videoUrl, linkedin,
+  "sessions": *[_type == "page" && slug.current == "program"][0]
+    .blocks[_type == "schedule"][0]
+    .sessions[references(^._id)] {
+      _key, time, title,
+      "format": format-> { title, color }
+    }
 `
 
 const visibleFilter = 'visible != false'

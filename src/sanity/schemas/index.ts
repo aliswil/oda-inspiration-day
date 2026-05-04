@@ -7,6 +7,8 @@ import speaker from './documents/speaker'
 import teamMember from './documents/teamMember'
 import sponsor from './documents/sponsor'
 import siteSettings from './documents/siteSettings'
+import programFormat from './documents/programFormat'
+import programTopic from './documents/programTopic'
 import hero from './blocks/hero'
 import richText from './blocks/richText'
 import speakerGrid from './blocks/speakerGrid'
@@ -26,7 +28,7 @@ import themeTeaser from './blocks/themeTeaser'
 
 export const schemaTypes = [
   seo, link, navItem, socialLink,
-  page, speaker, teamMember, sponsor, siteSettings,
+  page, speaker, teamMember, sponsor, siteSettings, programFormat, programTopic,
   hero, richText, speakerGrid, schedule, imageGallery, videoEmbed,
   ctaSection, statsCounter, teamGrid, partnerGrid, cardGrid, faqAccordion, quote, venueMap, videoCarousel, themeTeaser,
 ]

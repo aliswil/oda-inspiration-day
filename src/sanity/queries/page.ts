@@ -5,8 +5,10 @@ const blockContentProjection = `
   _type == "schedule" => {
     ...,
     sessions[] {
-      ...,
-      speaker-> { name, role, company, photo }
+      _key, time, title, description, location, linkUrl, linkLabel,
+      "format": format-> { title, "slug": slug.current, color, isBreak, isSideEvent },
+      "speakers": speakers[]-> { _id, name, role, company, "slug": slug.current, photo },
+      "topics": topics[]-> { _id, title, "slug": slug.current }
     }
   },
   _type == "imageGallery" => {
