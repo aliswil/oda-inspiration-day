@@ -6,9 +6,8 @@ import type { ScheduleSession } from '@/sanity/types'
 type SessionRowProps = { session: ScheduleSession; onDarkBg: boolean }
 
 export function SessionRow({ session, onDarkBg }: SessionRowProps) {
-  const { time, title, description, format, speakers, topics, location, linkUrl, linkLabel } = session
+  const { time, title, description, format, speakers, location, linkUrl, linkLabel } = session
   const isSideEvent = !!format?.isSideEvent
-  const validTopics = (topics || []).filter(Boolean)
   const validSpeakers = (speakers || []).filter(Boolean)
 
   const timeColor = onDarkBg ? 'text-mint' : 'text-red'
@@ -61,16 +60,6 @@ export function SessionRow({ session, onDarkBg }: SessionRowProps) {
               </span>
             ))}
           </p>
-        )}
-
-        {validTopics.length > 0 && (
-          <ul className="flex flex-wrap gap-1.5 mb-2" aria-label="Topics">
-            {validTopics.map((topic) => (
-              <li key={topic._id}>
-                <Chip variant="topic" label={topic.title} ariaLabel={`Topic: ${topic.title}`} />
-              </li>
-            ))}
-          </ul>
         )}
 
         {description && (
