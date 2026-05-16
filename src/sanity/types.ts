@@ -80,6 +80,7 @@ export type SpeakerGridBlock = {
 
 export type ScheduleSession = {
   _key: string; time: string; title: string; description?: string;
+  whatToExpect?: string;
   format?: ProgramFormat;
   speakers?: Pick<Speaker, '_id' | 'name' | 'role' | 'company' | 'slug' | 'photo'>[];
   topics?: ProgramTopic[];

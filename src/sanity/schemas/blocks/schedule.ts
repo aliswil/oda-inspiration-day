@@ -22,6 +22,10 @@ export default defineType({
           defineField({ name: 'title', title: 'Title', type: 'string', validation: (r) => r.required() }),
           defineField({ name: 'description', title: 'Description', type: 'text', rows: 2 }),
           defineField({
+            name: 'whatToExpect', title: 'What to expect', type: 'text', rows: 3,
+            description: 'Optional. A short paragraph shown under the speaker name — gives buyers a clear sense of the session value.',
+          }),
+          defineField({
             name: 'format', title: 'Format', type: 'reference', to: [{ type: 'programFormat' }],
             validation: (r) => r.required(),
           }),

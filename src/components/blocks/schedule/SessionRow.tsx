@@ -6,7 +6,7 @@ import type { ScheduleSession } from '@/sanity/types'
 type SessionRowProps = { session: ScheduleSession; onDarkBg: boolean }
 
 export function SessionRow({ session, onDarkBg }: SessionRowProps) {
-  const { time, title, description, format, speakers, location, linkUrl, linkLabel } = session
+  const { time, title, description, whatToExpect, format, speakers, location, linkUrl, linkLabel } = session
   const isBreak = !!format?.isBreak
   const isSideEvent = !!format?.isSideEvent
   const validSpeakers = (speakers || []).filter(Boolean)
@@ -65,6 +65,12 @@ export function SessionRow({ session, onDarkBg }: SessionRowProps) {
                 {i < validSpeakers.length - 1 && <span className={mutedColor}>{' · '}</span>}
               </span>
             ))}
+          </p>
+        )}
+
+        {whatToExpect && (
+          <p className={cn('text-sm md:text-base leading-relaxed mt-1 mb-2 max-w-prose', bodyColor)}>
+            {whatToExpect}
           </p>
         )}
 
