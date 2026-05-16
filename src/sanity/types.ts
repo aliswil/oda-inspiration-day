@@ -175,7 +175,8 @@ export type PersonSpotlightBlock = {
 }
 
 export type Participant = {
-  _key: string; name: string; role?: string; company?: string; image?: SanityImage
+  _key: string; name: string; role?: string; company?: string;
+  image?: SanityImage; bio?: string
 }
 
 export type ParticipantGridBlock = {

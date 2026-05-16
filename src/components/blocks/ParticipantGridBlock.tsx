@@ -57,6 +57,8 @@ function ParticipantCard({ participant, flipped, onDarkBg }: { participant: Part
   const companyColor = onDarkBg ? 'text-mint' : 'text-red'
   const fallbackBg = onDarkBg ? 'bg-dark-blue/40' : 'bg-lavender'
   const fallbackText = onDarkBg ? 'text-white/30' : 'text-dark-blue/30'
+  const summaryColor = onDarkBg ? 'text-white/80' : 'text-dark-blue'
+  const bioColor = onDarkBg ? 'text-white/85' : 'text-very-dark/85'
 
   return (
     <div className="relative">
@@ -80,6 +82,21 @@ function ParticipantCard({ participant, flipped, onDarkBg }: { participant: Part
       <h3 className={cn('font-bold text-xl md:text-2xl', nameColor)}>{participant.name}</h3>
       {participant.role && <p className={cn('text-base', roleColor)}>{participant.role}</p>}
       {participant.company && <p className={cn('text-base font-medium', companyColor)}>{participant.company}</p>}
+      {participant.bio && (
+        <details className="mt-3 group/bio">
+          <summary className={cn(
+            'cursor-pointer text-sm font-semibold list-none inline-flex items-center gap-1.5 hover:underline focus-visible:underline focus-visible:outline-none',
+            summaryColor,
+          )}>
+            <span className="transition-transform group-open/bio:rotate-90" aria-hidden="true">›</span>
+            <span className="group-open/bio:hidden">Bio</span>
+            <span className="hidden group-open/bio:inline">Hide bio</span>
+          </summary>
+          <p className={cn('text-sm md:text-base leading-relaxed mt-2 whitespace-pre-line', bioColor)}>
+            {participant.bio}
+          </p>
+        </details>
+      )}
     </div>
   )
 }

@@ -18,6 +18,7 @@ export default defineType({
           defineField({ name: 'role', title: 'Role / Title', type: 'string' }),
           defineField({ name: 'company', title: 'Company', type: 'string' }),
           defineField({ name: 'image', title: 'Image', type: 'image', options: { hotspot: true } }),
+          defineField({ name: 'bio', title: 'Bio', type: 'text', rows: 6, description: 'Shown inside an expandable "Bio" dropdown under the card. Blank lines make paragraph breaks.' }),
         ],
         preview: { select: { title: 'name', subtitle: 'company', media: 'image' } },
       }],
