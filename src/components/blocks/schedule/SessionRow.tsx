@@ -14,8 +14,8 @@ export function SessionRow({ session, onDarkBg }: SessionRowProps) {
   // Stage-based color: main vs side vs networking/pause.
   const stage: 'main' | 'side' | 'pause' = isBreak ? 'pause' : isSideEvent ? 'side' : 'main'
   const stageColor = onDarkBg
-    ? { main: 'text-lavender', side: 'text-mint', pause: 'text-red' }[stage]
-    : { main: 'text-purple', side: 'text-green', pause: 'text-red' }[stage]
+    ? { main: 'text-lavender', side: 'text-white/70', pause: 'text-purple' }[stage]
+    : { main: 'text-lavender-dark', side: 'text-very-dark/70', pause: 'text-purple' }[stage]
 
   const titleColor = onDarkBg ? 'text-white' : 'text-dark-blue'
   const bodyColor = onDarkBg ? 'text-white/80' : 'text-very-dark/80'
