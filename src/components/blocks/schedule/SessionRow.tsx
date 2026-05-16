@@ -15,8 +15,8 @@ export function SessionRow({ session, onDarkBg }: SessionRowProps) {
   // All combos pass WCAG AA at the sizes used.
   const stage: 'main' | 'side' | 'pause' = isBreak ? 'pause' : isSideEvent ? 'side' : 'main'
   const stageColor = onDarkBg
-    ? { main: 'text-red', side: 'text-mint', pause: 'text-white/70' }[stage]
-    : { main: 'text-red', side: 'text-dark-blue', pause: 'text-very-dark/70' }[stage]
+    ? { main: 'text-lavender', side: 'text-mint', pause: 'text-white/60' }[stage]
+    : { main: 'text-purple', side: 'text-dark-blue', pause: 'text-very-dark/50' }[stage]
 
   const titleColor = onDarkBg ? 'text-white' : 'text-dark-blue'
   const bodyColor = onDarkBg ? 'text-white/80' : 'text-very-dark/80'
