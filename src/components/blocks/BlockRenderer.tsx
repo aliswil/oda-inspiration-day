@@ -16,6 +16,7 @@ import { VenueMapBlock } from './VenueMapBlock'
 import { VideoCarouselBlock } from './VideoCarouselBlock'
 import { ThemeTeaserBlock } from './ThemeTeaserBlock'
 import { PersonSpotlightBlock } from './PersonSpotlightBlock'
+import { ParticipantGridBlock } from './ParticipantGridBlock'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const blockComponents: Record<string, React.ComponentType<{ block: any }>> = {
@@ -36,6 +37,7 @@ const blockComponents: Record<string, React.ComponentType<{ block: any }>> = {
   videoCarousel: VideoCarouselBlock,
   themeTeaser: ThemeTeaserBlock,
   personSpotlight: PersonSpotlightBlock,
+  participantGrid: ParticipantGridBlock,
 }
 
 type BlockRendererProps = {

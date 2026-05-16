@@ -14,7 +14,12 @@ const formatColorClasses: Record<ProgramFormatColor, string> = {
   'dark-blue': 'bg-dark-blue text-white',
   mint: 'bg-mint text-very-dark',
   lavender: 'bg-lavender text-dark-blue',
-  cream: 'bg-cream text-very-dark border border-dark-blue/15',
+  cream: 'bg-cream text-very-dark border border-dark-blue/20',
+  'very-dark': 'bg-very-dark text-cream',
+  'mint-dark': 'bg-very-dark text-mint border border-mint',
+  'lavender-dark': 'bg-very-dark text-lavender border border-lavender',
+  'red-soft': 'bg-cream text-dark-blue border-2 border-red',
+  'mint-soft': 'bg-cream text-dark-blue border-2 border-mint',
 }
 
 export function Chip({ label, variant = 'format', color = 'red', ariaLabel, className }: ChipProps) {

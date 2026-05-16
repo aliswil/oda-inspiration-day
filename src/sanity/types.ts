@@ -30,7 +30,10 @@ export type SpeakerSessionRef = {
   format?: { title: string; color: ProgramFormatColor }
 }
 
-export type ProgramFormatColor = 'red' | 'dark-blue' | 'mint' | 'lavender' | 'cream'
+export type ProgramFormatColor =
+  | 'red' | 'dark-blue' | 'mint' | 'lavender' | 'cream'
+  | 'very-dark' | 'mint-dark' | 'lavender-dark'
+  | 'red-soft' | 'mint-soft'
 
 export type ProgramFormat = {
   title: string; slug: string; color: ProgramFormatColor;
@@ -171,8 +174,21 @@ export type PersonSpotlightBlock = {
   backgroundColor?: 'cream' | 'lavender' | 'white' | 'mint' | 'dark-blue'
 }
 
+export type Participant = {
+  _key: string; name: string; role?: string; company?: string; image?: SanityImage
+}
+
+export type ParticipantGridBlock = {
+  _type: 'participantGrid'; _key: string;
+  enabled?: boolean;
+  heading?: string; subheading?: string;
+  participants?: Participant[];
+  backgroundColor?: 'cream' | 'lavender' | 'white' | 'mint' | 'dark-blue';
+  showPlaceholders?: boolean
+}
+
 export type Block =
   | HeroBlock | RichTextBlock | SpeakerGridBlock | ScheduleBlock
   | ImageGalleryBlock | VideoEmbedBlock | CtaSectionBlock | StatsCounterBlock
   | TeamGridBlock | PartnerGridBlock | CardGridBlock | FaqAccordionBlock
-  | QuoteBlock | VenueMapBlock | VideoCarouselBlock | PersonSpotlightBlock
+  | QuoteBlock | VenueMapBlock | VideoCarouselBlock | PersonSpotlightBlock | ParticipantGridBlock

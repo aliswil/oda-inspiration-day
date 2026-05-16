@@ -1,11 +1,16 @@
 import { defineField, defineType } from 'sanity'
 
 const COLOR_OPTIONS = [
-  { title: 'Red', value: 'red' },
-  { title: 'Dark Blue', value: 'dark-blue' },
-  { title: 'Mint', value: 'mint' },
-  { title: 'Lavender', value: 'lavender' },
-  { title: 'Cream', value: 'cream' },
+  { title: 'Red (filled)', value: 'red' },
+  { title: 'Dark Blue (filled)', value: 'dark-blue' },
+  { title: 'Mint (filled)', value: 'mint' },
+  { title: 'Lavender (filled)', value: 'lavender' },
+  { title: 'Cream (filled)', value: 'cream' },
+  { title: 'Very Dark (filled)', value: 'very-dark' },
+  { title: 'Mint on Dark', value: 'mint-dark' },
+  { title: 'Lavender on Dark', value: 'lavender-dark' },
+  { title: 'Red (soft outline)', value: 'red-soft' },
+  { title: 'Mint (soft outline)', value: 'mint-soft' },
 ]
 
 export default defineType({

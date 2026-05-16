@@ -7,10 +7,17 @@ type SessionRowProps = { session: ScheduleSession; onDarkBg: boolean }
 
 export function SessionRow({ session, onDarkBg }: SessionRowProps) {
   const { time, title, description, format, speakers, location, linkUrl, linkLabel } = session
+  const isBreak = !!format?.isBreak
   const isSideEvent = !!format?.isSideEvent
   const validSpeakers = (speakers || []).filter(Boolean)
 
-  const timeColor = onDarkBg ? 'text-mint' : 'text-red'
+  // Stage-based color: main vs side vs networking/pause.
+  // All combos pass WCAG AA at the sizes used.
+  const stage: 'main' | 'side' | 'pause' = isBreak ? 'pause' : isSideEvent ? 'side' : 'main'
+  const stageColor = onDarkBg
+    ? { main: 'text-red', side: 'text-mint', pause: 'text-white/70' }[stage]
+    : { main: 'text-red', side: 'text-dark-blue', pause: 'text-very-dark/70' }[stage]
+
   const titleColor = onDarkBg ? 'text-white' : 'text-dark-blue'
   const bodyColor = onDarkBg ? 'text-white/80' : 'text-very-dark/80'
   const mutedColor = onDarkBg ? 'text-white/60' : 'text-very-dark/60'
@@ -25,7 +32,7 @@ export function SessionRow({ session, onDarkBg }: SessionRowProps) {
       )}
     >
       <div className="w-16 md:w-24 flex-shrink-0 pt-1">
-        <time className={cn('text-base md:text-lg font-bold', timeColor)}>
+        <time className={cn('text-base md:text-lg font-bold', stageColor)}>
           {time}
         </time>
       </div>
@@ -79,8 +86,12 @@ export function SessionRow({ session, onDarkBg }: SessionRowProps) {
         )}
 
         {(location || linkUrl) && (
-          <div className={cn('flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-xs', mutedColor)}>
-            {location && <span>{location}</span>}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-xs">
+            {location && (
+              <span className={cn('font-semibold uppercase tracking-wide', stageColor)}>
+                {location}
+              </span>
+            )}
             {linkUrl && (
               <Link
                 href={linkUrl}

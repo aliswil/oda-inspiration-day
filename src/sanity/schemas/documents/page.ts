@@ -18,7 +18,7 @@ export default defineType({
         { type: 'imageGallery' }, { type: 'videoEmbed' }, { type: 'ctaSection' }, { type: 'statsCounter' },
         { type: 'teamGrid' }, { type: 'partnerGrid' }, { type: 'cardGrid' }, { type: 'faqAccordion' },
         { type: 'quote' }, { type: 'venueMap' }, { type: 'videoCarousel' }, { type: 'themeTeaser' },
-        { type: 'personSpotlight' },
+        { type: 'personSpotlight' }, { type: 'participantGrid' },
       ],
     }),
   ],
