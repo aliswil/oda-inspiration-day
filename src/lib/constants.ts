@@ -34,6 +34,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: 'Trondheim', href: '/trondheim' },
     ],
   },
+  { label: 'Expo', href: '/expo' },
   { label: 'ODA Awards', href: '/oda-awards' },
   {
     label: 'About',

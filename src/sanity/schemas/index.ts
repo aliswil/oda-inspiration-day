@@ -2,6 +2,7 @@ import seo from './objects/seo'
 import link from './objects/link'
 import navItem from './objects/navItem'
 import socialLink from './objects/socialLink'
+import expoStand from './objects/expoStand'
 import page from './documents/page'
 import speaker from './documents/speaker'
 import teamMember from './documents/teamMember'
@@ -27,10 +28,11 @@ import videoCarousel from './blocks/videoCarousel'
 import themeTeaser from './blocks/themeTeaser'
 import personSpotlight from './blocks/personSpotlight'
 import participantGrid from './blocks/participantGrid'
+import expoMap from './blocks/expoMap'
 
 export const schemaTypes = [
-  seo, link, navItem, socialLink,
+  seo, link, navItem, socialLink, expoStand,
   page, speaker, teamMember, sponsor, siteSettings, programFormat, programTopic,
   hero, richText, speakerGrid, schedule, imageGallery, videoEmbed,
-  ctaSection, statsCounter, teamGrid, partnerGrid, cardGrid, faqAccordion, quote, venueMap, videoCarousel, themeTeaser, personSpotlight, participantGrid,
+  ctaSection, statsCounter, teamGrid, partnerGrid, cardGrid, faqAccordion, quote, venueMap, videoCarousel, themeTeaser, personSpotlight, participantGrid, expoMap,
 ]
