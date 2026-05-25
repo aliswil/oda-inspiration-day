@@ -38,14 +38,32 @@ export function CtaSectionBlock({ block }: { block: CtaSectionBlockType }) {
             )}
             <div className="flex flex-wrap gap-4 justify-center">
               {block.cta && (
-                <Button
-                  href={block.cta.href}
-                  isExternal={block.cta.isExternal}
-                  size="lg"
-                  variant={block.backgroundColor === 'red' ? 'secondary' : 'primary'}
-                >
-                  {block.cta.label}
-                </Button>
+                isPlaceholderHref(block.cta.href) ? (
+                  <button
+                    type="button"
+                    disabled
+                    aria-label={`${block.cta.label} — not yet available`}
+                    title="Not yet available"
+                    className={cn(
+                      'inline-flex items-center justify-center rounded-full font-bold tracking-wide uppercase px-10 py-4.5 text-lg border-2 border-dashed',
+                      'opacity-60 cursor-not-allowed pointer-events-none select-none',
+                      block.backgroundColor === 'red' || block.backgroundColor === 'dark-blue'
+                        ? 'border-white/60 text-white/80'
+                        : 'border-dark-blue/40 text-dark-blue/60 bg-white/30',
+                    )}
+                  >
+                    {block.cta.label}
+                  </button>
+                ) : (
+                  <Button
+                    href={block.cta.href}
+                    isExternal={block.cta.isExternal}
+                    size="lg"
+                    variant={block.backgroundColor === 'red' ? 'secondary' : 'primary'}
+                  >
+                    {block.cta.label}
+                  </Button>
+                )
               )}
               {block.secondaryCta && (
                 isPlaceholderHref(block.secondaryCta.href) ? (
