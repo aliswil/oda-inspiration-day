@@ -18,6 +18,8 @@ function getYouTubeId(url: string): string | null {
   return null
 }
 
+const isPlaceholderHref = (href?: string) => !href || href === '#'
+
 function HeroCtas({ cta, secondaryCta }: Pick<HeroBlockType, 'cta' | 'secondaryCta'>) {
   return (
     <>
@@ -27,15 +29,31 @@ function HeroCtas({ cta, secondaryCta }: Pick<HeroBlockType, 'cta' | 'secondaryC
         </Button>
       )}
       {secondaryCta && (
-        <Button
-          href={secondaryCta.href}
-          isExternal={secondaryCta.isExternal}
-          variant="outline"
-          size="lg"
-          className="border-white text-white hover:bg-white hover:text-dark-blue"
-        >
-          {secondaryCta.label}
-        </Button>
+        isPlaceholderHref(secondaryCta.href) ? (
+          <button
+            type="button"
+            disabled
+            aria-label={`${secondaryCta.label} — not yet available`}
+            title="Not yet available"
+            className={cn(
+              'inline-flex items-center justify-center rounded-full font-bold tracking-wide uppercase px-10 py-4.5 text-lg border-2 border-dashed',
+              'opacity-60 cursor-not-allowed pointer-events-none select-none',
+              'border-white/60 text-white/80',
+            )}
+          >
+            {secondaryCta.label}
+          </button>
+        ) : (
+          <Button
+            href={secondaryCta.href}
+            isExternal={secondaryCta.isExternal}
+            variant="outline"
+            size="lg"
+            className="border-white text-white hover:bg-white hover:text-dark-blue"
+          >
+            {secondaryCta.label}
+          </Button>
+        )
       )}
     </>
   )
