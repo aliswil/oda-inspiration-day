@@ -46,7 +46,7 @@ export type TeamMember = { _id: string; name: string; role?: string; photo?: San
 
 export type Sponsor = {
   _id: string; name: string; logo?: SanityImage;
-  tier: 'platinum' | 'gold' | 'silver' | 'bronze' | 'partner'; url?: string
+  tier: 'platinum' | 'gold' | 'silver' | 'associate' | 'bronze' | 'partner'; url?: string
 }
 
 export type SiteSettings = {
