@@ -16,6 +16,20 @@ export default defineType({
           defineField({ name: 'description', title: 'Description', type: 'array', of: [{ type: 'block' }] }),
           defineField({ name: 'link', title: 'Link', type: 'link' }),
           defineField({ name: 'accentColor', title: 'Accent Color', type: 'string', options: { list: ['lavender', 'red', 'mint', 'dark-blue'] } }),
+          defineField({
+            name: 'sponsor', title: 'Sponsor', type: 'object',
+            description: 'Optional — adds a sponsor logo and sentence to this card.',
+            fields: [
+              defineField({ name: 'name', title: 'Sponsor Name', type: 'string' }),
+              defineField({
+                name: 'logo', title: 'Sponsor Logo', type: 'image',
+                options: { hotspot: true },
+                fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+              }),
+              defineField({ name: 'text', title: 'Sponsorship Sentence', type: 'string' }),
+              defineField({ name: 'url', title: 'Sponsor URL', type: 'url' }),
+            ],
+          }),
         ],
         preview: { select: { title: 'title' } },
       }],

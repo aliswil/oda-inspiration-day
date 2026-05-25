@@ -129,9 +129,14 @@ export type PartnerGridBlock = {
   showTiers?: boolean; backgroundColor?: string
 }
 
+export type CardSponsor = {
+  name?: string; logo?: SanityImage; text?: string; url?: string
+}
+
 export type CardItem = {
   _key: string; title: string; description?: PortableTextBlock[];
-  link?: SanityLink; accentColor?: string
+  link?: SanityLink; accentColor?: string;
+  sponsor?: CardSponsor
 }
 
 export type CardGridBlock = {

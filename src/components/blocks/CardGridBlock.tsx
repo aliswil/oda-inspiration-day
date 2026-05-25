@@ -3,8 +3,9 @@ import { Container } from '@/components/ui/Container'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { PortableTextRenderer } from '@/components/portable-text/PortableTextRenderer'
+import { SanityImage } from '@/components/ui/SanityImage'
 import { cn } from '@/lib/utils'
-import type { CardGridBlock as CardGridBlockType } from '@/sanity/types'
+import type { CardGridBlock as CardGridBlockType, CardSponsor } from '@/sanity/types'
 
 const colsMap: Record<number, string> = {
   2: 'grid-cols-1 md:grid-cols-2',
@@ -52,6 +53,7 @@ export function CardGridBlock({ block }: { block: CardGridBlockType }) {
                       {card.link.label} &rarr;
                     </span>
                   )}
+                  {card.sponsor?.logo && <SponsorBadge sponsor={card.sponsor} />}
                 </div>
               </CardWrapper>
             </AnimatedSection>
@@ -60,6 +62,42 @@ export function CardGridBlock({ block }: { block: CardGridBlockType }) {
       </Container>
     </SectionWrapper>
   )
+}
+
+function SponsorBadge({ sponsor }: { sponsor: CardSponsor }) {
+  const inner = (
+    <div className="mt-6 pt-5 border-t border-very-dark/10 flex items-start gap-4">
+      {sponsor.logo && (
+        <div className="relative w-20 h-10 shrink-0">
+          <SanityImage
+            image={sponsor.logo}
+            alt={sponsor.logo.alt || sponsor.name || 'Sponsor'}
+            fill
+            sizes="80px"
+            className="object-contain object-left"
+          />
+        </div>
+      )}
+      {sponsor.text && (
+        <p className="text-xs leading-relaxed text-very-dark/70">{sponsor.text}</p>
+      )}
+    </div>
+  )
+
+  if (sponsor.url) {
+    return (
+      <a
+        href={sponsor.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visit ${sponsor.name || 'sponsor'} website`}
+        className="block hover:opacity-80 transition-opacity"
+      >
+        {inner}
+      </a>
+    )
+  }
+  return inner
 }
 
 function CardWrapper({ link, children }: { link?: { href: string; isExternal?: boolean }; children: React.ReactNode }) {

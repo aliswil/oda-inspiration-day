@@ -14,6 +14,13 @@ const blockContentProjection = `
   _type == "imageGallery" => {
     ...,
     images[] { ..., asset-> }
+  },
+  _type == "cardGrid" => {
+    ...,
+    cards[] {
+      ...,
+      sponsor { ..., logo { ..., asset-> } }
+    }
   }
 `
 
