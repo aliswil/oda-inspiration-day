@@ -18,17 +18,18 @@ function getYouTubeId(url: string): string | null {
   return null
 }
 
-const isPlaceholderHref = (href?: string) => !href || href === '#'
+const isPlaceholderHref = (href?: string) => !href || href.trim() === '' || href.trim() === '#'
+const hasLabel = (label?: string) => Boolean(label && label.trim() !== '')
 
 function HeroCtas({ cta, secondaryCta }: Pick<HeroBlockType, 'cta' | 'secondaryCta'>) {
   return (
     <>
-      {cta && (
+      {cta && hasLabel(cta.label) && (
         <Button href={cta.href} isExternal={cta.isExternal} size="lg">
           {cta.label}
         </Button>
       )}
-      {secondaryCta && (
+      {secondaryCta && hasLabel(secondaryCta.label) && (
         isPlaceholderHref(secondaryCta.href) ? (
           <button
             type="button"

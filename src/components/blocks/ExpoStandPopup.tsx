@@ -54,7 +54,19 @@ export function ExpoStandPopup({ stand, onClose }: Props) {
           </div>
         ) : null}
 
-        <h3 className="font-black text-xl text-dark-blue mb-2">{stand.company}</h3>
+        <div className="flex items-center gap-3 mb-2">
+          {stand.standLabel ? (
+            <span
+              className={`inline-flex items-center justify-center w-9 h-9 rounded-full font-black text-sm shrink-0 ${
+                stand.standType === 'food' ? 'bg-dark-blue text-white' : 'bg-mint text-dark-blue'
+              }`}
+              aria-label={`Stand number ${stand.standLabel}`}
+            >
+              {stand.standLabel}
+            </span>
+          ) : null}
+          <h3 className="font-black text-xl text-dark-blue">{stand.company}</h3>
+        </div>
 
         {stand.description ? (
           <p className="text-very-dark/75 text-sm leading-relaxed mb-4">{stand.description}</p>

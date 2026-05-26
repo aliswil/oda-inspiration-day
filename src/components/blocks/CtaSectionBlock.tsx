@@ -7,10 +7,11 @@ import { BlobDecoration } from '@/components/ui/BlobDecoration'
 import { cn } from '@/lib/utils'
 import type { CtaSectionBlock as CtaSectionBlockType } from '@/sanity/types'
 
-// When an editor sets a CTA's URL to "#" in Sanity, treat it as a placeholder
-// and render a visible-but-inert button. Updating the URL in Studio flips it
-// to a normal interactive button automatically.
-const isPlaceholderHref = (href?: string) => !href || href === '#'
+// When an editor sets a CTA's URL to "#" (or leaves it blank) in Sanity,
+// treat it as a placeholder and render a visible-but-inert button. Updating
+// the URL in Studio flips it to a normal interactive button automatically.
+const isPlaceholderHref = (href?: string) => !href || href.trim() === '' || href.trim() === '#'
+const hasLabel = (label?: string) => Boolean(label && label.trim() !== '')
 
 export function CtaSectionBlock({ block }: { block: CtaSectionBlockType }) {
   return (
@@ -37,7 +38,7 @@ export function CtaSectionBlock({ block }: { block: CtaSectionBlockType }) {
               </p>
             )}
             <div className="flex flex-wrap gap-4 justify-center">
-              {block.cta && (
+              {block.cta && hasLabel(block.cta.label) && (
                 isPlaceholderHref(block.cta.href) ? (
                   <button
                     type="button"
@@ -65,7 +66,7 @@ export function CtaSectionBlock({ block }: { block: CtaSectionBlockType }) {
                   </Button>
                 )
               )}
-              {block.secondaryCta && (
+              {block.secondaryCta && hasLabel(block.secondaryCta.label) && (
                 isPlaceholderHref(block.secondaryCta.href) ? (
                   <button
                     type="button"
