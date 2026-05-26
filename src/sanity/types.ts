@@ -194,8 +194,28 @@ export type ParticipantGridBlock = {
   showPlaceholders?: boolean
 }
 
+export type ExpoStand = {
+  _key: string
+  standType: 'company' | 'food'
+  company: string
+  logo?: SanityImage
+  description?: string
+  websiteUrl?: string
+  floor: 1 | 2
+  standLabel?: string
+  x: number
+  y: number
+}
+
+export type ExpoMapBlock = {
+  _type: 'expoMap'; _key: string; enabled?: boolean;
+  heading?: string; description?: string;
+  stands?: ExpoStand[]
+}
+
 export type Block =
   | HeroBlock | RichTextBlock | SpeakerGridBlock | ScheduleBlock
   | ImageGalleryBlock | VideoEmbedBlock | CtaSectionBlock | StatsCounterBlock
   | TeamGridBlock | PartnerGridBlock | CardGridBlock | FaqAccordionBlock
   | QuoteBlock | VenueMapBlock | VideoCarouselBlock | PersonSpotlightBlock | ParticipantGridBlock
+  | ExpoMapBlock
