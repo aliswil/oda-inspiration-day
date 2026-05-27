@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { urlFor } from '@/sanity/image'
-import type { ExpoStand } from '@/sanity/types'
+import type { ExpoStand, ExpoStartup } from '@/sanity/types'
 
 type Props = { stand: ExpoStand; onClose: () => void }
 
@@ -14,7 +14,8 @@ export function ExpoStandPopup({ stand, onClose }: Props) {
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const logoUrl = stand.logo?.asset
+  const hasStartups = Array.isArray(stand.startups) && stand.startups.length > 0
+  const logoUrl = !hasStartups && stand.logo?.asset
     ? urlFor(stand.logo).width(480).auto('format').url()
     : null
 
@@ -29,7 +30,7 @@ export function ExpoStandPopup({ stand, onClose }: Props) {
       <div className="absolute inset-0 bg-very-dark/60 backdrop-blur-sm" aria-hidden="true" />
 
       <div
-        className="relative z-10 bg-cream rounded-2xl p-6 w-full max-w-sm shadow-2xl animate-[fade-up_0.2s_ease-out]"
+        className="relative z-10 bg-cream rounded-2xl p-6 w-full max-w-md shadow-2xl animate-[fade-up_0.2s_ease-out]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -72,6 +73,12 @@ export function ExpoStandPopup({ stand, onClose }: Props) {
           <p className="text-very-dark/75 text-sm leading-relaxed mb-4">{stand.description}</p>
         ) : null}
 
+        {hasStartups ? (
+          <ul className="grid grid-cols-2 gap-3 mb-4">
+            {stand.startups!.map((s) => <StartupTile key={s._key} startup={s} />)}
+          </ul>
+        ) : null}
+
         {stand.websiteUrl ? (
           <a
             href={stand.websiteUrl}
@@ -87,5 +94,53 @@ export function ExpoStandPopup({ stand, onClose }: Props) {
         ) : null}
       </div>
     </div>
+  )
+}
+
+function StartupTile({ startup }: { startup: ExpoStartup }) {
+  const logoUrl = startup.logo?.asset
+    ? urlFor(startup.logo).width(320).auto('format').url()
+    : null
+
+  const inner = (
+    <div className={`aspect-square flex flex-col items-center justify-center gap-2 p-3 rounded-xl border transition-colors ${
+      startup.darkBackground
+        ? 'bg-dark-blue border-dark-blue hover:bg-very-dark'
+        : 'bg-white border-very-dark/10 hover:border-dark-blue/30'
+    }`}>
+      {logoUrl ? (
+        <div className="relative w-full flex-1 min-h-0">
+          <Image
+            src={logoUrl}
+            alt={`${startup.name} logo`}
+            fill
+            sizes="160px"
+            className="object-contain"
+          />
+        </div>
+      ) : (
+        <span className="font-bold text-dark-blue text-sm text-center">{startup.name}</span>
+      )}
+      {logoUrl && (
+        <span className={`text-[10px] font-semibold text-center leading-tight ${startup.darkBackground ? 'text-white/80' : 'text-dark-blue/60'}`}>
+          {startup.name}
+        </span>
+      )}
+    </div>
+  )
+
+  return (
+    <li>
+      {startup.websiteUrl ? (
+        <a
+          href={startup.websiteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dark-blue rounded-xl"
+        >
+          {inner}
+        </a>
+      ) : inner}
+    </li>
   )
 }

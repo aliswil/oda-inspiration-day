@@ -194,6 +194,14 @@ export type ParticipantGridBlock = {
   showPlaceholders?: boolean
 }
 
+export type ExpoStartup = {
+  _key: string
+  name: string
+  logo?: SanityImage
+  websiteUrl?: string
+  darkBackground?: boolean
+}
+
 export type ExpoStand = {
   _key: string
   standType: 'company' | 'food'
@@ -205,6 +213,7 @@ export type ExpoStand = {
   standLabel?: string
   x: number
   y: number
+  startups?: ExpoStartup[]
 }
 
 export type ExpoMapBlock = {

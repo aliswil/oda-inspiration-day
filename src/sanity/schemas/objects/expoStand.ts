@@ -18,6 +18,23 @@ export default defineType({
     defineField({ name: 'description', title: 'Short Description', type: 'text', rows: 3 }),
     defineField({ name: 'websiteUrl', title: 'Website URL', type: 'url' }),
     defineField({
+      name: 'startups',
+      title: 'Featured Startups',
+      description: 'Optional — when set, the popup shows a grid of these startup logos instead of a single logo.',
+      type: 'array',
+      of: [{
+        type: 'object',
+        name: 'startup',
+        fields: [
+          defineField({ name: 'name', title: 'Name', type: 'string', validation: (r) => r.required() }),
+          defineField({ name: 'logo', title: 'Logo', type: 'image', options: { hotspot: false } }),
+          defineField({ name: 'websiteUrl', title: 'Website URL', type: 'url' }),
+          defineField({ name: 'darkBackground', title: 'Dark background?', type: 'boolean', initialValue: false, description: 'Enable for white/light logos that need a dark backdrop to stay visible' }),
+        ],
+        preview: { select: { title: 'name', media: 'logo' } },
+      }],
+    }),
+    defineField({
       name: 'floor',
       title: 'Floor',
       type: 'number',
