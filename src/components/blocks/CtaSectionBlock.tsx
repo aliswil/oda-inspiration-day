@@ -15,7 +15,11 @@ const hasLabel = (label?: string) => Boolean(label && label.trim() !== '')
 
 export function CtaSectionBlock({ block }: { block: CtaSectionBlockType }) {
   return (
-    <SectionWrapper backgroundColor={block.backgroundColor} padding="xl">
+    <SectionWrapper
+      backgroundColor={block.backgroundColor}
+      padding="xl"
+      className={block.fullHeight ? '-mt-16 md:-mt-20 min-h-screen flex items-center pt-32 md:pt-40' : undefined}
+    >
       {block.backgroundImage && (
         <div className="absolute inset-0">
           <SanityImage image={block.backgroundImage} fill sizes="100vw" className="object-cover" />

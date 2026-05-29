@@ -109,7 +109,7 @@ export type VideoEmbedBlock = {
 export type CtaSectionBlock = {
   _type: 'ctaSection'; _key: string; heading: string; body?: string;
   cta?: SanityLink; secondaryCta?: SanityLink;
-  backgroundImage?: SanityImage; backgroundColor?: string
+  backgroundImage?: SanityImage; backgroundColor?: string; fullHeight?: boolean
 }
 
 export type StatItem = { _key: string; value: number; suffix?: string; label: string }

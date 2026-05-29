@@ -14,6 +14,7 @@ export default defineType({
     defineField({ name: 'emailBody', title: 'Email Draft — Body', type: 'text', rows: 10, description: 'Pre-filled email body (plain text). Use line breaks for paragraphs.' }),
     defineField({ name: 'backgroundImage', title: 'Background Image', type: 'image', options: { hotspot: true } }),
     defineField({ name: 'backgroundColor', title: 'Background Color', type: 'string', options: { list: ['red', 'dark-blue', 'lavender', 'mint'] }, initialValue: 'red' }),
+    defineField({ name: 'fullHeight', title: 'Fill viewport', type: 'boolean', description: 'Stretch the section to fill the screen so the background color covers the full page. Useful when this is the only block on a page.', initialValue: false }),
   ],
   preview: { select: { title: 'heading' }, prepare({ title }) { return { title: title || 'CTA Section' } } },
 })
