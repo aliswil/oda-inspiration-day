@@ -24,7 +24,6 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Program', href: '/program' },
   { label: 'Paradox Panel', href: '/paradox-panel' },
   { label: 'Speakers', href: '/speakers' },
-  { label: 'Tickets', href: '/tickets' },
   {
     label: 'Venue',
     href: '/venue',

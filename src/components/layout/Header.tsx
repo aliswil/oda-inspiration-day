@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/Button'
 import { DesktopDropdown, MobileDropdown } from './HeaderDropdowns'
 import type { NavItem } from '@/lib/constants'
 
-export function Header({ navItems, ticketUrl }: { navItems: NavItem[]; ticketUrl: string }) {
+export function Header({ navItems }: { navItems: NavItem[] }) {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
@@ -40,8 +40,8 @@ export function Header({ navItems, ticketUrl }: { navItems: NavItem[]; ticketUrl
                 </Link>
               )
             )}
-            <Button href={ticketUrl} size="sm" className="ml-3">
-              Get Tickets
+            <Button href="/2026-highlights" size="sm" className="ml-3">
+              2026 Highlights
             </Button>
           </nav>
 
@@ -87,8 +87,8 @@ export function Header({ navItems, ticketUrl }: { navItems: NavItem[]; ticketUrl
                 )
               )}
               <div className="pt-4 px-4">
-                <Button href={ticketUrl} className="w-full">
-                  Get Tickets
+                <Button href="/2026-highlights" className="w-full">
+                  2026 Highlights
                 </Button>
               </div>
             </nav>
