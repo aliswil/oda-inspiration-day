@@ -18,6 +18,7 @@ import { ThemeTeaserBlock } from './ThemeTeaserBlock'
 import { PersonSpotlightBlock } from './PersonSpotlightBlock'
 import { ParticipantGridBlock } from './ParticipantGridBlock'
 import { ExpoMapBlock } from './ExpoMapBlock'
+import { PdfEmbedBlock } from './PdfEmbedBlock'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const blockComponents: Record<string, React.ComponentType<{ block: any }>> = {
@@ -40,6 +41,7 @@ const blockComponents: Record<string, React.ComponentType<{ block: any }>> = {
   personSpotlight: PersonSpotlightBlock,
   participantGrid: ParticipantGridBlock,
   expoMap: ExpoMapBlock,
+  pdfEmbed: PdfEmbedBlock,
 }
 
 type BlockRendererProps = {

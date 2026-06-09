@@ -29,10 +29,11 @@ import themeTeaser from './blocks/themeTeaser'
 import personSpotlight from './blocks/personSpotlight'
 import participantGrid from './blocks/participantGrid'
 import expoMap from './blocks/expoMap'
+import pdfEmbed from './blocks/pdfEmbed'
 
 export const schemaTypes = [
   seo, link, navItem, socialLink, expoStand,
   page, speaker, teamMember, sponsor, siteSettings, programFormat, programTopic,
   hero, richText, speakerGrid, schedule, imageGallery, videoEmbed,
-  ctaSection, statsCounter, teamGrid, partnerGrid, cardGrid, faqAccordion, quote, venueMap, videoCarousel, themeTeaser, personSpotlight, participantGrid, expoMap,
+  ctaSection, statsCounter, teamGrid, partnerGrid, cardGrid, faqAccordion, quote, venueMap, videoCarousel, themeTeaser, personSpotlight, participantGrid, expoMap, pdfEmbed,
 ]

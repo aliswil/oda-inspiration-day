@@ -222,9 +222,15 @@ export type ExpoMapBlock = {
   stands?: ExpoStand[]
 }
 
+export type PdfEmbedBlock = {
+  _type: 'pdfEmbed'; _key: string; enabled?: boolean;
+  heading?: string; downloadLabel?: string;
+  fileUrl?: string; originalFilename?: string; fileSize?: number
+}
+
 export type Block =
   | HeroBlock | RichTextBlock | SpeakerGridBlock | ScheduleBlock
   | ImageGalleryBlock | VideoEmbedBlock | CtaSectionBlock | StatsCounterBlock
   | TeamGridBlock | PartnerGridBlock | CardGridBlock | FaqAccordionBlock
   | QuoteBlock | VenueMapBlock | VideoCarouselBlock | PersonSpotlightBlock | ParticipantGridBlock
-  | ExpoMapBlock
+  | ExpoMapBlock | PdfEmbedBlock

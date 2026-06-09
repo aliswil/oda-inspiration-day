@@ -21,6 +21,12 @@ const blockContentProjection = `
       ...,
       sponsor { ..., logo { ..., asset-> } }
     }
+  },
+  _type == "pdfEmbed" => {
+    ...,
+    "fileUrl": file.asset->url,
+    "originalFilename": file.asset->originalFilename,
+    "fileSize": file.asset->size
   }
 `
 
