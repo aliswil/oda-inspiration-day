@@ -7,13 +7,15 @@ Conference website for **ODA Inspiration Day** — an annual tech event bringing
 ## Tech Stack
 
 - **Next.js 16** (App Router, React 19)
-- **Sanity CMS v5** — headless CMS with embedded studio at `/studio`
+- **Sanity CMS v6** — headless CMS with embedded studio at `/studio`
 - **Tailwind CSS v4** — utility-first styling with custom brand theme
 - **Framer Motion** — page and scroll animations (respects `prefers-reduced-motion`)
 - **TypeScript 5** — strict typing throughout
 - **Vercel** — hosting and deployment
 
 ## Getting Started
+
+Requires Node.js 22.12 or newer (Sanity v6).
 
 ```bash
 # Install dependencies
