@@ -10,6 +10,13 @@ export default defineType({
     defineField({ name: 'subheading', title: 'Subheading', type: 'text', rows: 3 }),
     defineField({ name: 'backgroundImage', title: 'Background Image', type: 'image', options: { hotspot: true } }),
     defineField({ name: 'backgroundVideo', title: 'Background Video URL', type: 'url' }),
+    defineField({
+      name: 'backgroundVideoStart',
+      title: 'Background Video Start (seconds)',
+      type: 'number',
+      description: 'Skip the beginning of the video. 20 starts it 20 seconds in. Leave empty to start from the beginning.',
+      validation: (r) => r.min(0).integer(),
+    }),
     defineField({ name: 'cta', title: 'Call to Action', type: 'link' }),
     defineField({ name: 'secondaryCta', title: 'Secondary CTA', type: 'link' }),
     defineField({ name: 'style', title: 'Style Variant', type: 'string', options: { list: ['fullscreen', 'tall', 'medium'] }, initialValue: 'fullscreen' }),
