@@ -4,19 +4,12 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
-import { SanityImage } from '@/components/ui/SanityImage'
-import { BlobDecoration } from '@/components/ui/BlobDecoration'
 import { HeroLogoAnimation } from '@/components/ui/HeroLogoAnimation'
 import { EVENT_DATE } from '@/lib/constants'
 import type { HeroBlock as HeroBlockType } from '@/sanity/types'
+import { HeroBackground } from './HeroBackground'
 
 const heightMap = { fullscreen: 'min-h-screen', tall: 'min-h-[80vh]', medium: 'min-h-[60vh]' }
-
-function getYouTubeId(url: string): string | null {
-  if (url.includes('youtu.be/')) return url.split('youtu.be/')[1]?.split('?')[0] || null
-  if (url.includes('youtube.com/watch')) return new URL(url).searchParams.get('v')
-  return null
-}
 
 const isPlaceholderHref = (href?: string) => !href || href.trim() === '' || href.trim() === '#'
 const hasLabel = (label?: string) => Boolean(label && label.trim() !== '')
@@ -62,57 +55,14 @@ function HeroCtas({ cta, secondaryCta }: Pick<HeroBlockType, 'cta' | 'secondaryC
 
 export function HeroBlock({ block }: { block: HeroBlockType }) {
   const height = heightMap[block.style || 'fullscreen']
-  const ytId = block.backgroundVideo ? getYouTubeId(block.backgroundVideo) : null
 
   return (
     <section className={cn('relative flex items-center justify-center overflow-hidden -mt-16 md:-mt-20', height)}>
-      {/* Mobile: show background image (or fallback); Desktop: show video if available */}
-      {block.backgroundVideo && (
-        <div className="absolute inset-0 md:hidden">
-          {block.backgroundImage ? (
-            <SanityImage image={block.backgroundImage} fill priority sizes="100vw" className="object-cover" />
-          ) : (
-            <Image src="/images/hero-mobile-bg.jpg" alt="" fill priority sizes="100vw" quality={90} className="object-cover" />
-          )}
-          <div className="absolute inset-0 bg-very-dark/50" />
-        </div>
-      )}
-
-      {block.backgroundImage && !block.backgroundVideo && (
-        <div className="absolute inset-0">
-          <SanityImage image={block.backgroundImage} fill priority sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-very-dark/50" />
-        </div>
-      )}
-
-      {block.backgroundVideo && (
-        <div className="absolute inset-0 hidden md:block">
-          {ytId ? (
-            <iframe
-              src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&playlist=${ytId}`}
-              allow="autoplay"
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-              style={{ border: 0, width: '100vw', height: '100vh', minWidth: '177.78vh', minHeight: '56.25vw' }}
-              tabIndex={-1}
-              aria-hidden="true"
-            />
-          ) : (
-            <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-              <source src={block.backgroundVideo} type="video/mp4" />
-            </video>
-          )}
-          <div className="absolute inset-0 bg-very-dark/50" />
-        </div>
-      )}
-
-      {!block.backgroundImage && !block.backgroundVideo && (
-        <>
-          <div className="absolute inset-0 bg-gradient-to-br from-dark-blue via-very-dark to-dark-blue" />
-          <BlobDecoration color="lavender" size="lg" className="-top-20 -left-20" />
-          <BlobDecoration color="mint" size="md" className="bottom-10 right-10" />
-          <BlobDecoration color="red" size="sm" className="top-1/3 right-1/4" />
-        </>
-      )}
+      <HeroBackground
+        backgroundImage={block.backgroundImage}
+        backgroundVideo={block.backgroundVideo}
+        backgroundVideoStart={block.backgroundVideoStart}
+      />
 
       <div className="relative z-10 text-center px-4 max-w-7xl mx-auto w-full">
         {block.style === 'fullscreen' && block.backgroundVideo ? (
