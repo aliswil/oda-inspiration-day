@@ -1,5 +1,5 @@
 import type { Block } from '@/sanity/types'
-import { HeroBlock } from './HeroBlock'
+import { HeroBlockServer } from './HeroBlockServer'
 import { RichTextBlock } from './RichTextBlock'
 import { SpeakerGridBlock } from './SpeakerGridBlock'
 import { ScheduleBlock } from './ScheduleBlock'
@@ -22,7 +22,7 @@ import { PdfEmbedBlock } from './PdfEmbedBlock'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const blockComponents: Record<string, React.ComponentType<{ block: any }>> = {
-  hero: HeroBlock,
+  hero: HeroBlockServer,
   richText: RichTextBlock,
   speakerGrid: SpeakerGridBlock,
   schedule: ScheduleBlock,

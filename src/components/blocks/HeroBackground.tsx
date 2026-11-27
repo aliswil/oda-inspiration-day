@@ -4,11 +4,11 @@ import { BlobDecoration } from '@/components/ui/BlobDecoration'
 import type { HeroBlock } from '@/sanity/types'
 import { HeroBackgroundVideo } from './HeroBackgroundVideo'
 
-type HeroBackgroundProps = Pick<HeroBlock, 'backgroundImage' | 'backgroundVideo' | 'backgroundVideoStart'>
+type HeroBackgroundProps = Pick<HeroBlock, 'backgroundImage' | 'backgroundVideo'> & { videoStart: number }
 
 const overlay = <div className="absolute inset-0 bg-very-dark/50" />
 
-export function HeroBackground({ backgroundImage, backgroundVideo, backgroundVideoStart }: HeroBackgroundProps) {
+export function HeroBackground({ backgroundImage, backgroundVideo, videoStart }: HeroBackgroundProps) {
   if (backgroundVideo) {
     return (
       <>
@@ -22,7 +22,7 @@ export function HeroBackground({ backgroundImage, backgroundVideo, backgroundVid
           {overlay}
         </div>
         <div className="absolute inset-0 hidden md:block">
-          <HeroBackgroundVideo url={backgroundVideo} start={Math.max(0, Math.floor(backgroundVideoStart ?? 0))} />
+          <HeroBackgroundVideo url={backgroundVideo} start={videoStart} />
           {overlay}
         </div>
       </>
