@@ -62,6 +62,7 @@ export type SocialLink = { platform: string; url: string }
 export type HeroBlock = {
   _type: 'hero'; _key: string; heading?: string; subheading?: string;
   backgroundImage?: SanityImage; backgroundVideo?: string; backgroundVideoStart?: number;
+  backgroundVideoDailyStep?: number; backgroundVideoLatestStart?: number;
   cta?: SanityLink; secondaryCta?: SanityLink;
   style?: 'fullscreen' | 'tall' | 'medium'
 }

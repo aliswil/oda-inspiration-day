@@ -53,7 +53,7 @@ function HeroCtas({ cta, secondaryCta }: Pick<HeroBlockType, 'cta' | 'secondaryC
   )
 }
 
-export function HeroBlock({ block }: { block: HeroBlockType }) {
+export function HeroBlock({ block, videoStart }: { block: HeroBlockType; videoStart: number }) {
   const height = heightMap[block.style || 'fullscreen']
 
   return (
@@ -61,7 +61,7 @@ export function HeroBlock({ block }: { block: HeroBlockType }) {
       <HeroBackground
         backgroundImage={block.backgroundImage}
         backgroundVideo={block.backgroundVideo}
-        backgroundVideoStart={block.backgroundVideoStart}
+        videoStart={videoStart}
       />
 
       <div className="relative z-10 text-center px-4 max-w-7xl mx-auto w-full">
